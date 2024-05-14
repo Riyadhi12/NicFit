@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun beranda() {
-    Text(text = "BERANDA")
+    Text(text = "BERANDA UTAMA")
 }
