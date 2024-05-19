@@ -22,7 +22,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.nicfit.artikel.artikel
+import com.example.nicfit.beranda.ContactUs
+import com.example.nicfit.beranda.akunsaya
 import com.example.nicfit.beranda.beranda
+import com.example.nicfit.beranda.kebijakanPrivasi
+import com.example.nicfit.beranda.pengaturan
+import com.example.nicfit.beranda.profile
 import com.example.nicfit.konsultasi.konsultasi
 import com.example.nicfit.misi.misi
 import com.example.nicfit.teman_sehat.temanSehat
@@ -30,22 +35,27 @@ import com.example.nicfit.teman_sehat.temanSehat
 @Composable
 fun AppNavigation() {
     val navController : NavHostController = rememberNavController()
-    
+    val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
+    val currentDestination : NavDestination? = navBackStackEntry?.destination
     Scaffold(
         bottomBar = {
+            if (currentDestination?.route != Screens.akunsaya.name &&
+                currentDestination?.route != Screens.profile.name &&
+                currentDestination?.route != Screens.pengaturan.name &&
+                currentDestination?.route != Screens.ContactUs.name &&
+                currentDestination?.route != Screens.kebijakanPrivasi.name
+            ){
+
             NavigationBar(
                 containerColor = Color.White,
                 contentColor = Color.Black
             ) {
-                val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
-                val currentDestination : NavDestination? = navBackStackEntry?.destination
-
-                ListOfNavItems.forEach{ Navitem ->
+                ListOfNavItems.forEach { Navitem ->
                     NavigationBarItem(
-                        selected = currentDestination?.hierarchy?.any{it.route == Navitem.route} == true,
+                        selected = currentDestination?.hierarchy?.any { it.route == Navitem.route } == true,
                         onClick = {
-                            navController.navigate(Navitem.route){
-                                popUpTo(navController.graph.findStartDestination().id){
+                            navController.navigate(Navitem.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
                                 launchSingleTop = true
@@ -53,7 +63,7 @@ fun AppNavigation() {
                             }
                         },
                         icon = {
-                            Image(painterResource(Navitem.icon), contentDescription = null )
+                            Image(painterResource(Navitem.icon), contentDescription = null)
                         },
                         label = {
                             Text(text = Navitem.label)
@@ -67,7 +77,7 @@ fun AppNavigation() {
                         )
                     )
                 }
-            }
+            } }
         }
     ) {
         PaddingValues ->
@@ -78,7 +88,7 @@ fun AppNavigation() {
                 .padding(PaddingValues)
         ){
             composable(route = Screens.beranda.name){
-                beranda()
+                beranda(navController)
             }
             composable(route = Screens.konsultasi.name) {
                 konsultasi()
@@ -91,6 +101,21 @@ fun AppNavigation() {
             }
             composable(route = Screens.temanSehat.name) {
                 temanSehat()
+            }
+            composable(route = Screens.akunsaya.name) {
+                akunsaya(navController)
+            }
+            composable(route = Screens.profile.name) {
+                profile(navController)
+            }
+            composable(route = Screens.pengaturan.name) {
+                pengaturan(navController)
+            }
+            composable(route = Screens.ContactUs.name) {
+                ContactUs(navController)
+            }
+            composable(route = Screens.kebijakanPrivasi.name) {
+                kebijakanPrivasi(navController)
             }
         }
     }
