@@ -5,5 +5,10 @@ enum class Screens {
     artikel,
     misi,
     konsultasi,
-    temanSehat
+    temanSehat,
+    akunsaya,
+    profile,
+    pengaturan,
+    ContactUs,
+    kebijakanPrivasi
 }
