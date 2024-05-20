@@ -13,9 +13,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun button(
-    text : String
+    text : String,
+    onItemClick: () -> Unit
 ) {
-    Button( onClick = { }, modifier = Modifier
+    Button( onClick = {  onItemClick() }, modifier = Modifier
         .width(292.dp)
         .height(48.dp),
         shape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp, bottomStart = 10.dp, bottomEnd = 10.dp),

@@ -10,5 +10,10 @@ enum class Screens {
     profile,
     pengaturan,
     ContactUs,
-    kebijakanPrivasi
+    kebijakanPrivasi,
+    editakun,
+    login,
+    RegisScreen,
+    survei,
+    bantuan
 }

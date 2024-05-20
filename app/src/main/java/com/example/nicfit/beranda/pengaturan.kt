@@ -75,7 +75,7 @@ fun pengaturan(navController: NavController) {
 
             }
             pengaturanItem(icon = Icons.Default.Help, text = "Bantuan"){
-
+                navController.navigate(Screens.bantuan.name)
             }
             pengaturanItem(icon = Icons.Default.Lock, text = "Kebijakan Privasi"){
                 navController.navigate(Screens.kebijakanPrivasi.name)

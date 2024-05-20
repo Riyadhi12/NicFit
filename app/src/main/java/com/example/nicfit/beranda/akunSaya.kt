@@ -56,8 +56,9 @@ fun akunsaya(navController: NavController) {
     }
 
         Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
+                .padding(top = 38.dp),
+            //verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(38.dp))
@@ -88,7 +89,7 @@ fun akunsaya(navController: NavController) {
             Text(
                 text = "Nama Lengkap",
                 modifier = Modifier
-                    .padding(start = 50.dp, top = 7.dp)
+                    .padding(start = 43.dp, top = 7.dp)
                     .align(Alignment.Start),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
@@ -96,12 +97,13 @@ fun akunsaya(navController: NavController) {
             Spacer(modifier = Modifier.height(9.dp))
             OutlinedTextField(
                 modifier = Modifier
-                    .width(292.dp),
+                    .width(314.dp)
+                    .height(48.dp),
                 shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
                 value = namaLengkap, onValueChange = {namaLengkap = it
                 }, placeholder = {
                     Text(
-                        text = "Nama Lengkap",
+                        text = "Value Nama Lengkap",
                         modifier = Modifier,
                         fontSize = 13.sp
                     )
@@ -116,7 +118,7 @@ fun akunsaya(navController: NavController) {
             Text(
                 text = "Nama Pengguna",
                 modifier = Modifier
-                    .padding(start = 50.dp, top = 7.dp)
+                    .padding(start = 43.dp,)
                     .align(Alignment.Start),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
@@ -124,12 +126,13 @@ fun akunsaya(navController: NavController) {
             Spacer(modifier = Modifier.height(9.dp))
             OutlinedTextField(
                 modifier = Modifier
-                    .width(292.dp),
+                    .width(314.dp)
+                    .height(48.dp),
                 shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
                 value = namaPengguna, onValueChange = {namaPengguna = it
                 }, placeholder = {
                     Text(
-                        text = "Nama Pengguna",
+                        text = "",
                         modifier = Modifier,
                         fontSize = 13.sp
                     )
@@ -144,7 +147,7 @@ fun akunsaya(navController: NavController) {
             Text(
                 text = "Email",
                 modifier = Modifier
-                    .padding(start = 50.dp, top = 7.dp)
+                    .padding(start = 43.dp)
                     .align(Alignment.Start),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
@@ -152,12 +155,13 @@ fun akunsaya(navController: NavController) {
             Spacer(modifier = Modifier.height(9.dp))
             OutlinedTextField(
                 modifier = Modifier
-                    .width(292.dp),
+                    .width(314.dp)
+                    .height(48.dp),
                 shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
                 value = email, onValueChange = {email = it
                 }, placeholder = {
                     Text(
-                        text = "Email",
+                        text = "Value Email",
                         modifier = Modifier,
                         fontSize = 13.sp
                     )
@@ -171,7 +175,7 @@ fun akunsaya(navController: NavController) {
             Text(
                 text = "Nomor Telepon",
                 modifier = Modifier
-                    .padding(start = 50.dp, top = 7.dp)
+                    .padding(start = 43.dp)
                     .align(Alignment.Start),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
@@ -179,12 +183,13 @@ fun akunsaya(navController: NavController) {
             Spacer(modifier = Modifier.height(9.dp))
             OutlinedTextField(
                 modifier = Modifier
-                    .width(292.dp),
+                    .width(314.dp)
+                    .height(48.dp),
                 shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
                 value = nomortlpn, onValueChange = {nomortlpn = it
                 }, placeholder = {
                     Text(
-                        text = "No Telepon",
+                        text = "",
                         modifier = Modifier,
                         fontSize = 13.sp
                     )
@@ -199,7 +204,7 @@ fun akunsaya(navController: NavController) {
             Text(
                 text = "Password",
                 modifier = Modifier
-                    .padding(start = 50.dp, top = 7.dp)
+                    .padding(start = 43.dp)
                     .align(Alignment.Start),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
@@ -207,7 +212,8 @@ fun akunsaya(navController: NavController) {
             Spacer(modifier = Modifier.height(9.dp))
             OutlinedTextField(
                 modifier = Modifier
-                    .width(292.dp),
+                    .width(314.dp)
+                    .height(48.dp),
                 shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
                 value = password, onValueChange = {password = it
                 }, placeholder = {
@@ -223,7 +229,9 @@ fun akunsaya(navController: NavController) {
                     focusedLabelColor = Color.Gray
                 )
             )
-            Spacer(modifier = Modifier.height(100.dp))
-            button(text = "Edit")
+            Spacer(modifier = Modifier.height(159.dp))
+            button(text = "Edit",  onItemClick = {
+                navController.navigate(Screens.editakun.name)
+            })
         }
 }

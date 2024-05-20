@@ -17,11 +17,13 @@ import androidx.navigation.navArgs
 import com.example.nicfit.artikel.artikel
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
+import com.example.nicfit.beranda.bantuan
 import com.example.nicfit.beranda.beranda
 import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
 import com.example.nicfit.daftar.RegisScreen
+import com.example.nicfit.daftar.survei
 import com.example.nicfit.lupasandi.inputEmail
 import com.example.nicfit.splash.splashScreen
 import com.example.nicfit.masuk.login
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             //login()
             //RegisScreen()
-            //AppNavigation()
+            AppNavigation()
             //beranda()
             //akunsaya()
             //profile()
@@ -44,6 +46,8 @@ class MainActivity : ComponentActivity() {
             //ContactUsScreen()
             //inputEmail()
             //splashScreen()
+            //survei()
+
         }
     }
 }

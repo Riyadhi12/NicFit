@@ -57,7 +57,7 @@ fun profile(navController: NavController) {
                     .size(20.dp)
                     .clickable { navController.navigate(Screens.beranda.name) }
             )
-            Spacer(modifier = Modifier.width(124.dp)) // Memberikan spasi antara gambar dan teks
+            Spacer(modifier = Modifier.width(124.dp))
             Text(
                 text = "Akun",
                 modifier = Modifier.align(Alignment.CenterVertically),
