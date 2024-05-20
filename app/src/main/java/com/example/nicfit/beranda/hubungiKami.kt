@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.ContactPhone
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Web
 import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material.icons.outlined.BackHand
@@ -83,7 +84,7 @@ fun ContactUs(navController: NavController) {
                 .padding(16.dp)
         ) {
             ContactCard(
-                icon = Icons.Default.ContactPhone,
+                icon = Icons.Default.Person,
                 title = "Customer Service",
                 onClick = { /* handle click */ }
             )
@@ -128,6 +129,8 @@ fun ContactCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .width(317.dp)
+            .height(57.dp)
             .clickable(onClick = onClick),
         backgroundColor = Color.White,
         shape = RoundedCornerShape(8.dp)

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,11 +34,31 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.nicfit.R
 import com.example.nicfit.component.button
+import com.example.nicfit.navigation.Screens
 
 @Composable
-fun RegisScreen(){
+fun RegisScreen(navController: NavController){
+    var namaPengguna by remember {
+        mutableStateOf("")
+    }
+    var email by remember {
+        mutableStateOf("")
+    }
+    var password by rememberSaveable {
+        mutableStateOf("") }
+
+    var konfirmasi by remember {
+        mutableStateOf("")
+    }
+    var passwordVisibility by remember { mutableStateOf(false) }
+
+    val icon = if (passwordVisibility)
+        painterResource(id = R.drawable.sh)
+    else
+        painterResource(id = R.drawable.hide)
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -60,71 +81,116 @@ fun RegisScreen(){
             .align(Alignment.Start))
 
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(value = "", onValueChange = {}, label ={
-            Text(text = "Buat Nama Pengguna")
-        },colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Color(0xFF508CAE),
-            focusedLabelColor = Color.Gray
-        ))
-
-        Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(value = "", onValueChange = {}, label ={
-            Text(text = "Buat Alamat Email")
-        },colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = Color(0xFF508CAE),
-            focusedLabelColor = Color.Gray
-        ))
-
-        Spacer(modifier = Modifier.height(16.dp))
-        var password by rememberSaveable { mutableStateOf("") }
-        var passwordVisibility by remember { mutableStateOf(false) }
-
-        val icon = if (passwordVisibility)
-            painterResource(id = R.drawable.sh)
-        else
-            painterResource(id = R.drawable.hide)
-
-        OutlinedTextField(value = password, onValueChange = {password = it},
-            label = {
-            Text(text = "Buat Kata Sandi")
-                    },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                    focusedBorderColor = Color(0xFF508CAE),
-            focusedLabelColor = Color.Gray
-        ),
-            trailingIcon = {
-                IconButton(onClick = { passwordVisibility = !passwordVisibility}) {
-                    Icon(painter = icon, contentDescription = "visibility icon",
-                    modifier = Modifier.size(width = 25.dp, height = 25.dp)
-                    )
-                }
+        OutlinedTextField(
+            modifier = Modifier
+                .width(292.dp),
+            shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
+            value = namaPengguna, onValueChange = {namaPengguna = it
+            }, label = {
+                Text(text = "Buat Nama Pengguna",
+                    modifier = Modifier,
+                    fontSize = 13.sp)
             },
-            visualTransformation = if(passwordVisibility) VisualTransformation.None
-            else PasswordVisualTransformation()
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF508CAE),
+                focusedLabelColor = Color.Gray
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedTextField(value = password, onValueChange = {password = it},
-            label ={
-            Text(text = "Konfirmasi Kata Sandi")
-                   },
-            colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = Color(0xFF508CAE),
-            focusedLabelColor = Color.Gray
-        ),
+        OutlinedTextField(
+            modifier = Modifier
+                .width(292.dp),
+            shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
+            value = email, onValueChange = {email = it
+            }, label = {
+                Text(text = "Buat Alamat Email",
+                    modifier = Modifier,
+                    fontSize = 13.sp)
+            },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF508CAE),
+                focusedLabelColor = Color.Gray
+            )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            modifier = Modifier
+                .width(292.dp),
+            shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
+            value = password,
+            onValueChange = {
+                password = it
+            },
+            label = {
+                Text(
+                    text = "Buat Kata Sandi",
+                    modifier = Modifier,
+                    fontSize = 13.sp,
+                )
+            },
             trailingIcon = {
-                IconButton(onClick = { passwordVisibility = !passwordVisibility}) {
-                    Icon(painter = icon, contentDescription = "visibility icon",
+                IconButton(onClick = {
+                    passwordVisibility = !passwordVisibility
+                }) {
+                    Icon(
+                        painter = icon,
+                        contentDescription = "Visibilty Icon",
                         modifier = Modifier.size(width = 25.dp, height = 25.dp)
                     )
                 }
             },
-            visualTransformation = if(passwordVisibility) VisualTransformation.None
-            else PasswordVisualTransformation()
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
+            else PasswordVisualTransformation(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF508CAE),
+                focusedLabelColor = Color.Gray
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        button("Daftar")
+        OutlinedTextField(
+            modifier = Modifier
+                .width(292.dp),
+            shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
+            value = konfirmasi,
+            onValueChange = {
+                konfirmasi = it
+            },
+            label = {
+                Text(
+                    text = "Konfirmasi Kata Sandi",
+                    modifier = Modifier,
+                    fontSize = 13.sp,
+                )
+            },
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility = !passwordVisibility
+                }) {
+                    Icon(
+                        painter = icon,
+                        contentDescription = "Visibilty Icon",
+                        modifier = Modifier.size(width = 25.dp, height = 25.dp)
+                    )
+                }
+            },
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
+            else PasswordVisualTransformation(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF508CAE),
+                focusedLabelColor = Color.Gray
+            )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        button(text = "Daftar",  onItemClick = {
+            navController.navigate(Screens.survei.name)
+        })
 
         Spacer(modifier = Modifier.height(32.dp))
         Row {

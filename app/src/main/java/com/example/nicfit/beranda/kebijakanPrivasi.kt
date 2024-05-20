@@ -45,7 +45,7 @@ fun kebijakanPrivasi(navController: NavController) {
                 contentDescription = null,
                 modifier = Modifier
                     .size(20.dp)
-                    .clickable { navController.navigate(Screens.profile.name) }
+                    .clickable { navController.navigate(Screens.pengaturan.name) }
             )
             Spacer(modifier = Modifier.width(103.dp))
             Text(

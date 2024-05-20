@@ -34,21 +34,21 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.nicfit.R
 import com.example.nicfit.component.button
+import com.example.nicfit.navigation.Screens
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun login(){
+fun login(navController: NavController){
     var email by remember {
         mutableStateOf("")
     }
-
     var password by remember {
         mutableStateOf("")
     }
-
     var passwordVisibility by remember {
         mutableStateOf(false)
     }
@@ -71,8 +71,8 @@ fun login(){
         Text(
             text = "Masuk",
             modifier = Modifier
-                .padding(start = 50.dp, top = 7.dp) // Atur jarak dari sisi kiri dan atas
-                .align(Alignment.Start), // Pindahkan ke sudut kiri atas
+                .padding(start = 50.dp, top = 7.dp)
+                .align(Alignment.Start),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
@@ -155,14 +155,18 @@ fun login(){
 
         Spacer(modifier = Modifier.height(31.dp))
 
-        button("Masuk")
+        button(text = "Masuk",  onItemClick = {
+            navController.navigate(Screens.beranda.name)
+        })
 
         Spacer(modifier = Modifier.height(13.dp))
         Row {
             Text(text = "Belum punya akun? ")
             Text(text = "Daftar",
                 modifier = Modifier
-                    .clickable {}
+                    .clickable {
+                        navController.navigate(Screens.RegisScreen.name)
+                    }
                 ,color = Color(0xFF508CAE)
                 ,fontWeight = FontWeight.Bold
             )

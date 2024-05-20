@@ -24,11 +24,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.nicfit.artikel.artikel
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
+import com.example.nicfit.beranda.bantuan
 import com.example.nicfit.beranda.beranda
+import com.example.nicfit.beranda.editakun
 import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
+import com.example.nicfit.daftar.RegisScreen
+import com.example.nicfit.daftar.survei
 import com.example.nicfit.konsultasi.konsultasi
+import com.example.nicfit.masuk.login
 import com.example.nicfit.misi.misi
 import com.example.nicfit.teman_sehat.temanSehat
 
@@ -43,7 +48,12 @@ fun AppNavigation() {
                 currentDestination?.route != Screens.profile.name &&
                 currentDestination?.route != Screens.pengaturan.name &&
                 currentDestination?.route != Screens.ContactUs.name &&
-                currentDestination?.route != Screens.kebijakanPrivasi.name
+                currentDestination?.route != Screens.kebijakanPrivasi.name &&
+                currentDestination?.route != Screens.editakun.name &&
+                currentDestination?.route != Screens.login.name &&
+                currentDestination?.route != Screens.RegisScreen.name &&
+                currentDestination?.route != Screens.survei.name &&
+                currentDestination?.route != Screens.bantuan.name
             ){
 
             NavigationBar(
@@ -83,7 +93,7 @@ fun AppNavigation() {
         PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.beranda.name,
+            startDestination = Screens.login.name,
             modifier = Modifier
                 .padding(PaddingValues)
         ){
@@ -116,6 +126,21 @@ fun AppNavigation() {
             }
             composable(route = Screens.kebijakanPrivasi.name) {
                 kebijakanPrivasi(navController)
+            }
+            composable(route = Screens.editakun.name) {
+                editakun(navController)
+            }
+            composable(route = Screens.login.name) {
+                login(navController)
+            }
+            composable(route = Screens.RegisScreen.name) {
+                RegisScreen(navController)
+            }
+            composable(route = Screens.survei.name) {
+                survei(navController)
+            }
+            composable(route = Screens.bantuan.name) {
+                bantuan(navController)
             }
         }
     }
