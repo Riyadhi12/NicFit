@@ -29,6 +29,7 @@ import com.example.nicfit.splash.splashScreen
 import com.example.nicfit.masuk.login
 import com.example.nicfit.navigation.AppNavigation
 import com.example.nicfit.navigation.Screens
+import com.example.nicfit.splash.PagerScreen
 import com.example.nicfit.ui.theme.NicFitTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
             //ContactUsScreen()
             //inputEmail()
             //splashScreen()
-            //survei()
+
 
         }
     }

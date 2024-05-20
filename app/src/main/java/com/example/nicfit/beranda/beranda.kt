@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -55,7 +56,8 @@ fun beranda(navController: NavController) {
          ) {
             Card(
                shape = CircleShape,
-               modifier = Modifier.size(56.dp)
+               modifier = Modifier
+                  .size(56.dp)
                   .clickable {
                      navController.navigate(Screens.profile.name)
                   }
@@ -218,4 +220,9 @@ fun beranda(navController: NavController) {
             }
       }
    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun berandaPreview(){
 }
