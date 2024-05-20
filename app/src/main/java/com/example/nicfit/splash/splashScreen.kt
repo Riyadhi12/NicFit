@@ -29,10 +29,14 @@ fun splashScreen(navController: NavController){
     val scope = rememberCoroutineScope()
     LaunchedEffect(key1 = true) {
         scope.launch {
+
             delay(3000) // Delay for 3 seconds
             navController.navigate(Screens.PagerScreen.name) {
                 popUpTo(Screens.splashScreen.name) { inclusive = true }
             }
+
+           
+
         }
     }
     Box(
