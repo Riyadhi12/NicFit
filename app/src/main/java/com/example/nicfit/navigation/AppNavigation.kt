@@ -28,8 +28,12 @@ import com.example.nicfit.beranda.beranda
 import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
+import com.example.nicfit.daftar.RegisScreen
 import com.example.nicfit.konsultasi.konsultasi
+import com.example.nicfit.masuk.login
 import com.example.nicfit.misi.misi
+import com.example.nicfit.splash.PagerScreen
+import com.example.nicfit.splash.splashScreen
 import com.example.nicfit.teman_sehat.temanSehat
 
 @Composable
@@ -43,7 +47,9 @@ fun AppNavigation() {
                 currentDestination?.route != Screens.profile.name &&
                 currentDestination?.route != Screens.pengaturan.name &&
                 currentDestination?.route != Screens.ContactUs.name &&
-                currentDestination?.route != Screens.kebijakanPrivasi.name
+                currentDestination?.route != Screens.kebijakanPrivasi.name &&
+                currentDestination?.route != Screens.splashScreen.name &&
+                currentDestination?.route != Screens.PagerScreen.name
             ){
 
             NavigationBar(
@@ -83,10 +89,16 @@ fun AppNavigation() {
         PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.beranda.name,
+            startDestination = Screens.splashScreen.name,
             modifier = Modifier
                 .padding(PaddingValues)
         ){
+            composable(route = Screens.splashScreen.name){
+                splashScreen(navController)
+            }
+            composable(route = Screens.PagerScreen.name){
+                PagerScreen(navController)
+            }
             composable(route = Screens.beranda.name){
                 beranda(navController)
             }
@@ -116,6 +128,12 @@ fun AppNavigation() {
             }
             composable(route = Screens.kebijakanPrivasi.name) {
                 kebijakanPrivasi(navController)
+            }
+            composable(route = Screens.login.name){
+                login(navController)
+            }
+            composable(route = Screens.RegisScreen.name){
+                RegisScreen()
             }
         }
     }

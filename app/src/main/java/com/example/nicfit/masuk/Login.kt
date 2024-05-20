@@ -34,13 +34,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.nicfit.R
 import com.example.nicfit.component.button
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun login(){
+fun login(navController: NavController){
     var email by remember {
         mutableStateOf("")
     }
