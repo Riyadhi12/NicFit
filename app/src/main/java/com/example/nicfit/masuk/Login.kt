@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -140,17 +141,17 @@ fun login(navController: NavController){
                 focusedLabelColor = Color.Gray
             )
         )
-
-
         Spacer(modifier = Modifier.height(7.dp))
 
         Text(
             text = "Lupa Kata Sandi?",
+            style = TextStyle(
+                fontSize = 12.sp,
+                color = Color(0xFF508CAE)
+            ),
             modifier = Modifier
-                .clickable {}
-                .offset(x = 100.dp, y = 7.dp),
-            fontSize = 12.sp,
-            color = Color(0xFF508CAE)
+                .offset(x = 100.dp, y = 7.dp)
+                .clickable { navController.navigate(Screens.inputEmail.name) },
         )
 
         Spacer(modifier = Modifier.height(31.dp))

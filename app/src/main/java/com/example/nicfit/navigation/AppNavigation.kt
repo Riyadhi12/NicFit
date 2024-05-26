@@ -36,11 +36,21 @@ import com.example.nicfit.daftar.RegisScreen
 import com.example.nicfit.daftar.survei
 
 import com.example.nicfit.konsultasi.konsultasi
+import com.example.nicfit.lupasandi.cdVerifikasi
+import com.example.nicfit.lupasandi.inputEmail
+import com.example.nicfit.lupasandi.konfirmasiSandi
 import com.example.nicfit.masuk.login
 import com.example.nicfit.misi.misi
 import com.example.nicfit.splash.PagerScreen
 import com.example.nicfit.splash.splashScreen
 import com.example.nicfit.teman_sehat.temanSehat
+import com.example.nicfit.konsultasi.KonsulDateTimeChoose
+import com.example.nicfit.konsultasi.KonsulMethod
+import com.example.nicfit.konsultasi.KonsultasiList
+import com.example.nicfit.konsultasi.PaymentMethod
+import com.example.nicfit.konsultasi.PaymentStatus
+import com.example.nicfit.konsultasi.TransferBankBca
+import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatList
 
 @Composable
 fun AppNavigation() {
@@ -54,13 +64,16 @@ fun AppNavigation() {
                 currentDestination?.route != Screens.pengaturan.name &&
                 currentDestination?.route != Screens.ContactUs.name &&
                 currentDestination?.route != Screens.kebijakanPrivasi.name &&
-
-
                 currentDestination?.route != Screens.editakun.name &&
                 currentDestination?.route != Screens.login.name &&
                 currentDestination?.route != Screens.RegisScreen.name &&
                 currentDestination?.route != Screens.survei.name &&
-                currentDestination?.route != Screens.bantuan.name
+                currentDestination?.route != Screens.bantuan.name &&
+                currentDestination?.route != Screens.splashScreen.name &&
+                currentDestination?.route != Screens.PagerScreen.name &&
+                currentDestination?.route != Screens.inputEmail.name &&
+                currentDestination?.route != Screens.cdVerifikasi.name &&
+                currentDestination?.route != Screens.konfirmasiSandi.name
             ){
 
             NavigationBar(
@@ -101,7 +114,6 @@ fun AppNavigation() {
         NavHost(
             navController = navController,
             startDestination = Screens.splashScreen.name,
-
             modifier = Modifier
                 .padding(PaddingValues)
         ){
@@ -115,7 +127,7 @@ fun AppNavigation() {
                 beranda(navController)
             }
             composable(route = Screens.konsultasi.name) {
-                konsultasi()
+                KonsultasiList(modifier = Modifier,navController)
             }
             composable(route = Screens.misi.name) {
                 misi()
@@ -124,7 +136,7 @@ fun AppNavigation() {
                 artikel()
             }
             composable(route = Screens.temanSehat.name) {
-                temanSehat()
+                TemanSehatList(modifier = Modifier,navController)
             }
             composable(route = Screens.akunsaya.name) {
                 akunsaya(navController)
@@ -156,7 +168,33 @@ fun AppNavigation() {
             }
             composable(route = Screens.bantuan.name) {
                 bantuan(navController)
-
+            }
+            composable(route = Screens.inputEmail.name) {
+                inputEmail(navController)
+            }
+            composable(route = Screens.cdVerifikasi.name) {
+                cdVerifikasi(navController)
+            }
+            composable(route = Screens.konfirmasiSandi.name) {
+                konfirmasiSandi(navController)
+            }
+            composable(route = "payment_bank") {
+                PaymentMethod(modifier = Modifier,navController)
+            }
+            composable(route = "payment_bca"){
+                TransferBankBca(modifier = Modifier, navController)
+            }
+            composable(route = "payment_status"){
+                PaymentStatus(modifier = Modifier, navController)
+            }
+            composable(route = "chooseDateTime"){
+                KonsulDateTimeChoose(modifier = Modifier,navController)
+            }
+            composable(route = "konsul_method"){
+                KonsulMethod(modifier = Modifier, navController)
+            }
+            composable(route = "booking_detail"){
+                KonsulDateTimeChoose(modifier = Modifier, navController)
             }
         }
     }

@@ -196,7 +196,8 @@ fun RegisScreen(navController: NavController){
         Row {
             Text(text = "Sudah punya akun? ")
             Text(text = "Masuk",
-                modifier = Modifier.clickable {  },
+                modifier = Modifier.clickable {
+                    navController.navigate(Screens.login.name) },
                 color = Color(0xFF508CAE),
                 fontWeight = FontWeight.SemiBold
             )
