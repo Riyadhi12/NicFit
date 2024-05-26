@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">NicFit</string>
+    <string name="search_consultant">Cari Konsultan</string>
+    <string name="doctor_name">dr. Pawan Kusuma</string>
+    <string name="doctor_spec">Spesialis Paru dan Jantung</string>
 </resources>

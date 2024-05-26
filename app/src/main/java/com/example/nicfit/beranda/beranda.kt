@@ -74,7 +74,7 @@ fun beranda(navController: NavController) {
                modifier = Modifier.padding(start = 5.dp)
             ) {
                Text(
-                  text = "Hallo",
+                  text = "Hallo,",
                   color = Color.White
                )
                Text(
