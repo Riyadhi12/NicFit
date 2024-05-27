@@ -29,7 +29,7 @@ object dataKecanduan {
 
     val deskripsi = arrayOf(
         "Investasi mirip dengan menabung, namun bisa menghasilkan keuntungan yang mengalahkan inflasi. Investasi bisa jadi pilihan untuk mempersiapkan kebutuhan hidup di masa yang akan datang seperti mempersiapkan dana pendidikan, biaya pernikahan, atau bahkan danapensiun. Jadi suatu saat Anda tidak perlu terus bekerja dan memutuskan untuk pensiun dini, karena sudah rutin mendapat penghasilan dari instrumen investasi yang Anda miliki. Selain itu bisa juga dijadikan cadangan harta, bilamana Anda memiliki kebutuhan mendadak.",
-        "Tomato sos, cheese, oregano, spinach, green paprika, rukola",
+        "Tomato sos and cheese",
         "Tomato sos, oregano, mozzarella, goda, parmesan, cheddar"
     )
 }
