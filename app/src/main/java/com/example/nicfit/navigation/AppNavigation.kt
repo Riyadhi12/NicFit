@@ -1,5 +1,6 @@
 package com.example.nicfit.navigation
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.NavigationBar
@@ -21,7 +22,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.nicfit.artikel.artikel
+import com.example.nicfit.artikel.Artikel
+import com.example.nicfit.artikel.artikelEmosional
+import com.example.nicfit.artikel.artikelKecanduan
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
 import com.example.nicfit.beranda.bantuan
@@ -31,10 +34,15 @@ import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
 import com.example.nicfit.daftar.RegisScreen
-
-
 import com.example.nicfit.daftar.survei
-
+import com.example.nicfit.data.dataEmosional.imageRes
+import com.example.nicfit.data.dataEmosional.judul
+import com.example.nicfit.data.dataEmosional.pencipta
+import com.example.nicfit.data.dataEmosional.tanggal
+import com.example.nicfit.data.dataKecanduan.dates
+import com.example.nicfit.data.dataKecanduan.imageId
+import com.example.nicfit.data.dataKecanduan.names
+import com.example.nicfit.data.dataKecanduan.penerbit
 import com.example.nicfit.konsultasi.konsultasi
 import com.example.nicfit.masuk.login
 import com.example.nicfit.misi.misi
@@ -54,13 +62,16 @@ fun AppNavigation() {
                 currentDestination?.route != Screens.pengaturan.name &&
                 currentDestination?.route != Screens.ContactUs.name &&
                 currentDestination?.route != Screens.kebijakanPrivasi.name &&
-
-
                 currentDestination?.route != Screens.editakun.name &&
                 currentDestination?.route != Screens.login.name &&
                 currentDestination?.route != Screens.RegisScreen.name &&
                 currentDestination?.route != Screens.survei.name &&
-                currentDestination?.route != Screens.bantuan.name
+                currentDestination?.route != Screens.bantuan.name &&
+                currentDestination?.route != Screens.splashScreen.name &&
+                currentDestination?.route != Screens.PagerScreen.name &&
+                currentDestination?.route != Screens.artikelKecanduan.name &&
+                currentDestination?.route != Screens.detailKecanduan.name &&
+                currentDestination?.route != Screens.artikelEmosional.name
             ){
 
             NavigationBar(
@@ -121,7 +132,7 @@ fun AppNavigation() {
                 misi()
             }
             composable(route = Screens.artikel.name) {
-                artikel()
+                Artikel()
             }
             composable(route = Screens.temanSehat.name) {
                 temanSehat()
@@ -156,7 +167,15 @@ fun AppNavigation() {
             }
             composable(route = Screens.bantuan.name) {
                 bantuan(navController)
+            }
+            composable(route = Screens.artikelKecanduan.name) {
+                artikelKecanduan(imageId,names,dates,penerbit,navController)
+            }
+            composable(route = Screens.detailKecanduan.name) {
 
+            }
+            composable(route = Screens.artikelEmosional.name) {
+                artikelEmosional(imageRes,judul,tanggal,pencipta,navController)
             }
         }
     }

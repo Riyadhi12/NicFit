@@ -11,18 +11,18 @@ enum class Screens {
     pengaturan,
     ContactUs,
     kebijakanPrivasi,
-
-
-sealed class Screen(val route : String){
-    data object Splash : Screen("splash")
-    data object Welcome : Screen("onBoarding")
-    data object Login : Screen("login")
-    data object Daftar : Screen("daftar")
-
     editakun,
     login,
     RegisScreen,
     survei,
-    bantuan
-
+    bantuan,
+    splashScreen,
+    PagerScreen,
+    artikelKecanduan,
+    detailKecanduan,
+    artikelEmosional
 }
+
+
+
+
