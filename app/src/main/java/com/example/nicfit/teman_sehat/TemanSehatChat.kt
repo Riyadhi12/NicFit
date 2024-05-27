@@ -5,14 +5,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.nicfit.components.MessageList
 
 
 @Composable
 fun TemanSehatChat(
     modifier: Modifier,
-    navController: NavController
+    navController: NavHostController
 ){
-    MessageList(modifier = modifier, false)
+    MessageList(modifier = modifier, navHostController = navController, false)
 }
 

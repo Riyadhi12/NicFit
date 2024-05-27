@@ -1,5 +1,6 @@
 package com.example.nicfit.konsultasi
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,9 +24,11 @@ import com.example.nicfit.components.KonsultasiTabViewPage
 fun KonsultasiDetail(
     modifier: Modifier,
     navHostController: NavHostController,
-    value : Boolean
+    valueStr : String
 ){
+    val value = valueStr.toBoolean()
     Box {
+        Log.d("Logging Screen","Di konsultasi detail")
         CustomizedBackground()
         Column {
             Image(painter = painterResource(id = R.drawable.doctor), contentDescription = null,
@@ -44,5 +47,5 @@ fun KonsultasiDetail(
 @Preview
 @Composable
 fun KonsultasiDetailPreview(){
-    KonsultasiDetail(modifier = Modifier, navHostController = NavHostController(LocalContext.current), true)
+    KonsultasiDetail(modifier = Modifier, navHostController = NavHostController(LocalContext.current), "true")
 }

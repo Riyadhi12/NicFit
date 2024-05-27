@@ -1,5 +1,6 @@
 package com.example.nicfit.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ fun DetailDescriptionHeader (
     Column (
         modifier = modifier.padding(12.dp)
     ){
+        Log.d("Logging Screen","di detail description header")
         Row(
             modifier = modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween

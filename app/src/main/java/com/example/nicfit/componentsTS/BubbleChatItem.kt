@@ -31,6 +31,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.nicfit.R
 //import com.example.nicfit.model.Message
 import com.example.nicfit_22_bios.model.Message
@@ -68,6 +69,7 @@ fun MessageItem(message: Message, modifier: Modifier) {
 @Composable
 fun MessageList(
     modifier:Modifier,
+    navHostController: NavHostController,
     isKonsultasi:Boolean
 ) {
     val messages = remember {
@@ -150,11 +152,3 @@ fun MessageList(
     }
 }
 
-
-@Preview
-@Composable
-fun PreviewMessageList() {
-    Column {
-        MessageList(modifier = Modifier, false)
-    }
-}

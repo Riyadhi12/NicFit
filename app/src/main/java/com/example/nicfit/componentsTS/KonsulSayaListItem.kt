@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.nicfit.R
+import com.example.nicfit.navigation.Screens
 
 @Composable
 fun KonsulSayaListItem(
@@ -75,8 +76,7 @@ fun KonsulSayaListItem(
 
                     }
                     ConfirmationButton(text = "Chat Konsultan", toConfirm = true, onClickButton = {
-                        val value = false
-                        navHostController.navigate("detail?value=$value")
+                        navHostController.navigate("${Screens.detail.name}/false")
                     }, modifier = modifier.fillMaxWidth())
                 }
             }
