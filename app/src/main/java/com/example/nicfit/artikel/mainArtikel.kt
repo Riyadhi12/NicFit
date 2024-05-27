@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -120,6 +121,7 @@ fun Artikel() {
                 if (textState.text.isEmpty()) {
                     Text(
                         text = "Cari Artikel",
+                        style = TextStyle(fontFamily = FontFamily.SansSerif),
                         color = Color.Gray
                     )
                 }
