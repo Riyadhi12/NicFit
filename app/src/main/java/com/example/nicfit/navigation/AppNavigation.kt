@@ -1,6 +1,7 @@
 package com.example.nicfit.navigation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -17,10 +18,12 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.nicfit.artikel.artikel
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
@@ -34,6 +37,8 @@ import com.example.nicfit.daftar.RegisScreen
 
 
 import com.example.nicfit.daftar.survei
+import com.example.nicfit.konsultasi.BookingDetail
+import com.example.nicfit.konsultasi.KonsulChat
 
 import com.example.nicfit.konsultasi.konsultasi
 import com.example.nicfit.lupasandi.cdVerifikasi
@@ -46,6 +51,7 @@ import com.example.nicfit.splash.splashScreen
 import com.example.nicfit.teman_sehat.temanSehat
 import com.example.nicfit.konsultasi.KonsulDateTimeChoose
 import com.example.nicfit.konsultasi.KonsulMethod
+import com.example.nicfit.konsultasi.KonsultasiDetail
 import com.example.nicfit.konsultasi.KonsultasiList
 import com.example.nicfit.konsultasi.PaymentMethod
 import com.example.nicfit.konsultasi.PaymentStatus
@@ -53,7 +59,9 @@ import com.example.nicfit.konsultasi.TransferBankBca
 import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatList
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(
+    modifier: Modifier = Modifier.fillMaxSize()
+) {
     val navController : NavHostController = rememberNavController()
     val navBackStackEntry : NavBackStackEntry? by navController.currentBackStackEntryAsState()
     val currentDestination : NavDestination? = navBackStackEntry?.destination
@@ -73,7 +81,11 @@ fun AppNavigation() {
                 currentDestination?.route != Screens.PagerScreen.name &&
                 currentDestination?.route != Screens.inputEmail.name &&
                 currentDestination?.route != Screens.cdVerifikasi.name &&
-                currentDestination?.route != Screens.konfirmasiSandi.name
+                currentDestination?.route != Screens.konfirmasiSandi.name&&
+                currentDestination?.route != Screens.detail.name&&
+                currentDestination?.route != Screens.payment_bank.name&&
+                currentDestination?.route != Screens.payment_status.name&&
+                currentDestination?.route != Screens.payment_bca.name
             ){
 
             NavigationBar(
@@ -114,7 +126,7 @@ fun AppNavigation() {
         NavHost(
             navController = navController,
             startDestination = Screens.splashScreen.name,
-            modifier = Modifier
+            modifier = modifier
                 .padding(PaddingValues)
         ){
             composable(route = Screens.splashScreen.name){
@@ -127,7 +139,35 @@ fun AppNavigation() {
                 beranda(navController)
             }
             composable(route = Screens.konsultasi.name) {
-                KonsultasiList(modifier = Modifier,navController)
+                KonsultasiList(modifier = Modifier, navController)
+            }
+            composable(route = "${Screens.detail.name}/{value}") { backStackEntry ->
+                val value = backStackEntry.arguments?.getString("value")
+                KonsultasiDetail(modifier = Modifier, navHostController = navController, valueStr = value!!)
+            }
+            composable(route = "${Screens.payment_bank.name}/{value}") { backStackEntry ->
+                val value = backStackEntry.arguments?.getString("value")
+                PaymentMethod(modifier = Modifier, navHostController = navController, valueStr = value!!)
+            }
+            composable(route = "${Screens.payment_bca.name}/{value}"){ backStackEntry ->
+                val value = backStackEntry.arguments?.getString("value")
+                TransferBankBca(modifier = Modifier, navHostController = navController, valueStr = value!!)
+            }
+            composable(route = "${Screens.payment_status.name}/{value}"){ backStackEntry ->
+                val value = backStackEntry.arguments?.getString("value")
+                PaymentStatus(modifier = Modifier, navHostController = navController, isContactValue = value!!)
+            }
+            composable(route = Screens.chooseDateTime.name){
+                KonsulDateTimeChoose(modifier = Modifier, navController = navController)
+            }
+            composable(route = Screens.konsul_method.name){
+                KonsulMethod(modifier = Modifier, navHostController = navController)
+            }
+            composable(route = Screens.booking_detail.name){
+                BookingDetail(modifier = Modifier, navHostController = navController)
+            }
+            composable(route = Screens.konsul_chat.name){
+                KonsulChat(modifier = Modifier, navHostController = navController)
             }
             composable(route = Screens.misi.name) {
                 misi()
@@ -177,24 +217,6 @@ fun AppNavigation() {
             }
             composable(route = Screens.konfirmasiSandi.name) {
                 konfirmasiSandi(navController)
-            }
-            composable(route = "payment_bank") {
-                PaymentMethod(modifier = Modifier,navController)
-            }
-            composable(route = "payment_bca"){
-                TransferBankBca(modifier = Modifier, navController)
-            }
-            composable(route = "payment_status"){
-                PaymentStatus(modifier = Modifier, navController)
-            }
-            composable(route = "chooseDateTime"){
-                KonsulDateTimeChoose(modifier = Modifier,navController)
-            }
-            composable(route = "konsul_method"){
-                KonsulMethod(modifier = Modifier, navController)
-            }
-            composable(route = "booking_detail"){
-                KonsulDateTimeChoose(modifier = Modifier, navController)
             }
         }
     }

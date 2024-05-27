@@ -20,11 +20,13 @@ import com.example.nicfit.components.BankTransferInstruction
 @Composable
 fun TransferBankBca(
     modifier: Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    valueStr: String
 ){
+    val value = valueStr.toBoolean()
     Column(modifier = modifier.padding(8.dp)) {
         BankTransferCard(bankName = "bca", accountNumber = "1234 087 2100 2927", modifier = modifier.clickable {
-            navHostController.navigate("payment_status")
+            navHostController.navigate("payment_status/$valueStr")
         })
         Text(text = "Informasi", style = TextStyle(fontSize = 24.sp), modifier = modifier.padding(8.dp))
         BankTransferAccountInfo(modifier = modifier)
@@ -33,8 +35,9 @@ fun TransferBankBca(
     }
 }
 
+
 @Preview
 @Composable
 fun TransferBankBcaPreview(){
-    TransferBankBca(modifier = Modifier, navHostController = NavHostController(LocalContext.current))
+    TransferBankBca(modifier = Modifier, navHostController = NavHostController(LocalContext.current), "true")
 }

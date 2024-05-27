@@ -20,8 +20,15 @@ enum class Screens {
     PagerScreen,
     inputEmail,
     cdVerifikasi,
-    konfirmasiSandi
-
+    konfirmasiSandi,
+    detail,
+    payment_bank,
+    payment_bca,
+    payment_status,
+    chooseDateTime,
+    konsul_method,
+    booking_detail,
+    konsul_chat
 }
 
 
