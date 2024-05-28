@@ -15,12 +15,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.nicfit.components.ConfirmationButton
 import com.example.nicfit.components.ProModalSheet
 import com.example.nicfit.components.WelcomPaidModalSheet
+import com.example.nicfit.componentsTS.poppinFamily
 import kotlinx.coroutines.launch
 
 
@@ -37,8 +40,8 @@ fun Deskripsi(
     Column(
         modifier = modifier.padding(12.dp)
     ) {
-        Text(text = "Tentang")
-        Text(text = "Dr. Farhan Satria adalah seorang dokter spesialis paru yang berdedikasi untuk menyediakan perawatan terbaik kepada pasien dengan berbagai kondisi paru-paru. Dengan pengalaman yang luas di bidang penyakit paru, Dr. Farhan telah mengelola berbagai kasus mulai dari penyakit paru kronis hingga penyakit paru akut.")
+        Text(text = "Tentang", fontWeight = FontWeight.Bold, fontFamily = poppinFamily, fontSize = 20.sp)
+        Text(text = "Dr. Farhan Satria adalah seorang dokter spesialis paru yang berdedikasi untuk menyediakan perawatan terbaik kepada pasien dengan berbagai kondisi paru-paru. Dengan pengalaman yang luas di bidang penyakit paru, Dr. Farhan telah mengelola berbagai kasus mulai dari penyakit paru kronis hingga penyakit paru akut.", fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 14.sp)
         ConfirmationButton(
             onClickButton = {
                 when(isPaid){

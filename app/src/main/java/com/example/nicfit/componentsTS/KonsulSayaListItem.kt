@@ -9,20 +9,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.nicfit.R
+import com.example.nicfit.componentsTS.poppinFamily
 import com.example.nicfit.navigation.Screens
 
 @Composable
@@ -31,11 +34,11 @@ fun KonsulSayaListItem(
     navHostController: NavHostController
 ){
     Card(
-        colors = CardDefaults.cardColors(Color.White),
+        backgroundColor = Color.White,
         modifier = modifier
             .fillMaxWidth()
             .padding(12.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+        elevation = 8.dp
     ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -45,14 +48,14 @@ fun KonsulSayaListItem(
                 Image(
                     painter = painterResource(id = R.drawable.doctor),
                     contentDescription = "",
-                    modifier
-                        .size(100.dp)
-                        .width(50.dp)
-                        .padding(8.dp)
+                    contentScale = ContentScale.Crop,
+                    modifier = modifier.size(100.dp)
+                        .width(30.dp)
+                        .padding(end = 8.dp)
                 )
                 Column {
-                    Text(text = stringResource(id = R.string.doctor_name))
-                    Text(text = stringResource(id = R.string.doctor_spec))
+                    Text(text = stringResource(id = R.string.doctor_name), fontWeight = FontWeight.Bold, fontFamily = poppinFamily)
+                    Text(text = stringResource(id = R.string.doctor_spec), fontWeight = FontWeight.Normal, fontFamily = poppinFamily, color = Color.Gray, fontSize = 14.sp)
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -63,7 +66,7 @@ fun KonsulSayaListItem(
                                     contentDescription = "", modifier.size(17.dp)
                                 )
                             }
-                            Text(text = " 4.6 Review    ")
+                            Text(text = " 4.6 Review    ", fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 14.sp)
                         }
                         Row {
                             Image(
@@ -71,13 +74,13 @@ fun KonsulSayaListItem(
                                 contentDescription = "",
                                 modifier.size(17.dp)
                             )
-                            Text(text = " 8 tahun")
+                            Text(text = " 8 tahun", fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 14.sp)
                         }
 
                     }
                     ConfirmationButton(text = "Chat Konsultan", toConfirm = true, onClickButton = {
                         navHostController.navigate("${Screens.detail.name}/false")
-                    }, modifier = modifier.fillMaxWidth())
+                    }, modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp))
                 }
             }
     }

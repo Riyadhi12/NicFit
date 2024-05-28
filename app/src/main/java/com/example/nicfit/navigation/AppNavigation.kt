@@ -56,6 +56,7 @@ import com.example.nicfit.konsultasi.KonsultasiList
 import com.example.nicfit.konsultasi.PaymentMethod
 import com.example.nicfit.konsultasi.PaymentStatus
 import com.example.nicfit.konsultasi.TransferBankBca
+import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatChat
 import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatList
 
 @Composable
@@ -217,6 +218,9 @@ fun AppNavigation(
             }
             composable(route = Screens.konfirmasiSandi.name) {
                 konfirmasiSandi(navController)
+            }
+            composable(route = Screens.teman_sehat_chat.name){
+                TemanSehatChat(modifier = Modifier, navController = navController)
             }
         }
     }

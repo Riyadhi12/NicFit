@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +21,7 @@ import androidx.navigation.NavHostController
 import com.example.nicfit.components.CustomizedBackground
 import com.example.nicfit.components.CustomizedSearchBar
 import com.example.nicfit.components.TemanSehatTabPage
+import com.example.nicfit.componentsTS.poppinFamily
 
 
 @Composable
@@ -33,11 +35,11 @@ fun TemanSehatList(
 
         Column {
             Text(text = "Teman Sehat",
-                fontSize = 22.sp,
+                fontSize = 22.sp, fontFamily = poppinFamily, fontWeight = FontWeight.Bold,
                 color = Color.White, textAlign = TextAlign.Center, modifier = modifier.fillMaxWidth().padding(20.dp))
             Text(text = "Temukan teman dan cara mengatasi kesepian dan kesendirian mu", color = Color.White,
                 textAlign = TextAlign.Center,
-                fontSize = 16.sp,
+                fontSize = 16.sp, fontFamily = poppinFamily,
                 modifier = modifier.fillMaxWidth().padding(horizontal = 12.dp))
             CustomizedSearchBar(keyword = "Cari", modifier = modifier.padding(top = 16.dp))
             TemanSehatTabPage(modifier = modifier, navController = navController)

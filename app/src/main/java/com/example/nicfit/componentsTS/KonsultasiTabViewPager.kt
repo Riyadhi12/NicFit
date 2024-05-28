@@ -62,11 +62,13 @@ fun KonsultasiTabViewPage(
                     isPaid
                 )
                 false ->{
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
+                    Column {
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                    }
                 }
             }
             1 -> when(isForDetail){

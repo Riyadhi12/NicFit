@@ -1,4 +1,4 @@
-package com.example.nicfit.components
+package com.example.nicfit.componentsTS
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,12 +14,12 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.nicfit.R
 
 @Composable
-fun CustomizedBackground() {
+fun CustomizedWhiteBackground(
+){
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -27,7 +27,7 @@ fun CustomizedBackground() {
         Spacer(
             modifier = Modifier
                 .fillMaxSize()
-                .background(colorResource(id = R.color.blue_nicfit))
+                .background(colorResource(id = R.color.blue_nicfit).copy(alpha = 0.1f))
                 .alpha(10f)
         )
 
@@ -36,16 +36,9 @@ fun CustomizedBackground() {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .height(590.dp)
+                .height(550.dp)
                 .clip(RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp))
                 .background(Color.White)
         )
     }
 }
-
-@Preview
-@Composable
-fun CustomizedBackgroundPreview() {
-    CustomizedBackground()
-}
-
