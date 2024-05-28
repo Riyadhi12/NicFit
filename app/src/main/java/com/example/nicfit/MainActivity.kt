@@ -27,6 +27,7 @@ import com.example.nicfit.daftar.survei
 import com.example.nicfit.lupasandi.inputEmail
 import com.example.nicfit.splash.splashScreen
 import com.example.nicfit.masuk.login
+import com.example.nicfit.misi.misi
 import com.example.nicfit.navigation.AppNavigation
 import com.example.nicfit.navigation.Screens
 import com.example.nicfit.splash.PagerScreen
