@@ -222,7 +222,3 @@ fun beranda(navController: NavController) {
    }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun berandaPreview(){
-}
