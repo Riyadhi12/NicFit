@@ -26,7 +26,8 @@ import com.example.nicfit.R
 @Composable
 fun PaymentMethod(
     modifier: Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    valueStr: String
 ) {
     Column{
         Text(text = "Pilih Bank", modifier = modifier.padding(16.dp))
@@ -42,7 +43,7 @@ fun PaymentMethod(
                 Column(
                     modifier = modifier.fillMaxSize()
                         .clickable {
-                            navHostController.navigate("payment_bca")
+                            navHostController.navigate("payment_bca/$valueStr")
                         },
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
@@ -98,5 +99,5 @@ fun PaymentMethod(
 @Preview
 @Composable
 fun PaymentMethodPreview() {
-    PaymentMethod(modifier = Modifier, navHostController = NavHostController(LocalContext.current))
+    PaymentMethod(modifier = Modifier, navHostController = NavHostController(LocalContext.current), "true")
 }

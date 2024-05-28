@@ -27,104 +27,218 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.nicfit.R
 import com.example.nicfit.components.ConfirmationButton
+import com.example.nicfit.navigation.Screens
 
 
 @Composable
 fun PaymentStatus(
     modifier: Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    isContactValue: String
 ){
-    Card(
-        modifier = modifier.padding(8.dp)
-    ) {
-        Column(
-            modifier = modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(painter = painterResource(id = R.drawable.bca_logo), contentDescription = "", modifier = modifier
-                .height(100.dp)
-                .width(200.dp)
-                .fillMaxWidth()
-                .align(Alignment.CenterHorizontally)
-                .clip(
-                    RectangleShape
-                )
-                .padding(12.dp)
-            )
-            Text(text = "Transaksi telah sukses!", style = TextStyle(fontSize = 18.sp))
-            Text(text = "20 Mei 2024 20:00 gmt+7", style = TextStyle(fontSize = 12.sp))
-            Text(text = "Rp50.000", modifier = modifier.padding(12.dp), style = TextStyle(fontSize = 24.sp))
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "Pengirim")
-                Text(text = "Yoga Agatha")
-            }
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "Bank Tujuan")
-                Text(text = "BCA")
-            }
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "Nomor Kirim")
-                Text(text = "8930462013")
-            }
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "ID Transaksi")
-                Text(text = "2435GASFD7523")
-            }
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 4.dp)
-                    .padding(bottom = 64.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "Catatan")
-                Text(text = "")
-            }
-            Row(
-                modifier = modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+    val value = isContactValue.toBoolean()
+    when(value){
+        true ->{
+            Column(
+                modifier = modifier.fillMaxWidth().padding(horizontal = 12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Button(onClick = {
-                },
-                    colors = ButtonDefaults.buttonColors(Color.Transparent)) {
-                    Image(painter = painterResource(id = R.drawable.download_button), contentDescription = "",
-                        modifier = modifier
-                            .height(40.dp)
-                            .width(80.dp))
+                Card(
+                    modifier = modifier.padding(8.dp)
+                ) {
+                    Column(
+                        modifier = modifier.fillMaxWidth(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(painter = painterResource(id = R.drawable.bca_logo), contentDescription = "", modifier = modifier
+                            .height(100.dp)
+                            .width(200.dp)
+                            .fillMaxWidth()
+                            .align(Alignment.CenterHorizontally)
+                            .clip(
+                                RectangleShape
+                            )
+                            .padding(12.dp)
+                        )
+                        Text(text = "Transaksi telah sukses!", style = TextStyle(fontSize = 18.sp))
+                        Text(text = "20 Mei 2024 20:00 gmt+7", style = TextStyle(fontSize = 12.sp))
+                        Text(text = "Rp50.000", modifier = modifier.padding(12.dp), style = TextStyle(fontSize = 24.sp))
+                        Row(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ){
+                            Text(text = "Pengirim")
+                            Text(text = "Yoga Agatha")
+                        }
+                        Row(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ){
+                            Text(text = "Bank Tujuan")
+                            Text(text = "BCA")
+                        }
+                        Row(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ){
+                            Text(text = "Nomor Kirim")
+                            Text(text = "8930462013")
+                        }
+                        Row(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 4.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ){
+                            Text(text = "ID Transaksi")
+                            Text(text = "2435GASFD7523")
+                        }
+                        Row(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 4.dp)
+                                .padding(bottom = 64.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ){
+                            Text(text = "Catatan")
+                            Text(text = "")
+                        }
+                        Row(
+                            modifier = modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Button(onClick = {
+                            },
+                                colors = ButtonDefaults.buttonColors(Color.Transparent)) {
+                                Image(painter = painterResource(id = R.drawable.download_button), contentDescription = "",
+                                    modifier = modifier
+                                        .height(40.dp)
+                                        .width(80.dp))
+                            }
+                            Button(onClick = {
+                            },
+                                colors = ButtonDefaults.buttonColors(Color.Transparent)) {
+                                Image(painter = painterResource(id = R.drawable.share_button), contentDescription = "",
+                                    modifier = modifier
+                                        .height(40.dp)
+                                        .width(60.dp))
+                            }
+                        }
+
+                    }
                 }
-                Button(onClick = {
-                },
-                    colors = ButtonDefaults.buttonColors(Color.Transparent)) {
-                    Image(painter = painterResource(id = R.drawable.share_button), contentDescription = "",
+                ConfirmationButton(text = "Kembali", toConfirm = false, onClickButton = {
+                    navHostController.navigate("konsultasiList") },
+                    modifier = modifier.fillMaxWidth().padding(horizontal = 24.dp))
+                ConfirmationButton(text = "Chat Konsultan", toConfirm = true, onClickButton = {
+                    navHostController.navigate(Screens.konsul_chat.name) },
+                    modifier = modifier.fillMaxWidth().padding(horizontal = 24.dp))
+            }
+
+        }
+        false->{
+            Card(
+                modifier = modifier.padding(8.dp)
+            ) {
+                Column(
+                    modifier = modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(painter = painterResource(id = R.drawable.bca_logo), contentDescription = "", modifier = modifier
+                        .height(100.dp)
+                        .width(200.dp)
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                        .clip(
+                            RectangleShape
+                        )
+                        .padding(12.dp)
+                    )
+                    Text(text = "Transaksi telah sukses!", style = TextStyle(fontSize = 18.sp))
+                    Text(text = "20 Mei 2024 20:00 gmt+7", style = TextStyle(fontSize = 12.sp))
+                    Text(text = "Rp50.000", modifier = modifier.padding(12.dp), style = TextStyle(fontSize = 24.sp))
+                    Row(
                         modifier = modifier
-                            .height(40.dp)
-                            .width(60.dp))
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Text(text = "Pengirim")
+                        Text(text = "Yoga Agatha")
+                    }
+                    Row(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Text(text = "Bank Tujuan")
+                        Text(text = "BCA")
+                    }
+                    Row(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Text(text = "Nomor Kirim")
+                        Text(text = "8930462013")
+                    }
+                    Row(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Text(text = "ID Transaksi")
+                        Text(text = "2435GASFD7523")
+                    }
+                    Row(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 4.dp)
+                            .padding(bottom = 64.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ){
+                        Text(text = "Catatan")
+                        Text(text = "")
+                    }
+                    Row(
+                        modifier = modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Button(onClick = {
+                        },
+                            colors = ButtonDefaults.buttonColors(Color.Transparent)) {
+                            Image(painter = painterResource(id = R.drawable.download_button), contentDescription = "",
+                                modifier = modifier
+                                    .height(40.dp)
+                                    .width(80.dp))
+                        }
+                        Button(onClick = {
+                        },
+                            colors = ButtonDefaults.buttonColors(Color.Transparent)) {
+                            Image(painter = painterResource(id = R.drawable.share_button), contentDescription = "",
+                                modifier = modifier
+                                    .height(40.dp)
+                                    .width(60.dp))
+                        }
+                    }
+                    ConfirmationButton(text = "Kembali", toConfirm = true, onClickButton = {
+                        val value = true
+                        navHostController.navigate("detail/$value") }, modifier = modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp))
                 }
             }
-            ConfirmationButton(text = "Kembali", toConfirm = true, onClickButton = {
-                val value = true
-                navHostController.navigate("detail/$value") }, modifier = modifier.fillMaxWidth().padding(horizontal = 24.dp))
         }
     }
 }
@@ -132,5 +246,5 @@ fun PaymentStatus(
 @Preview
 @Composable
 fun PaymentStatusPreview(){
-    PaymentStatus(modifier = Modifier, navHostController = NavHostController(LocalContext.current))
+    PaymentStatus(modifier = Modifier, navHostController = NavHostController(LocalContext.current), "true")
 }

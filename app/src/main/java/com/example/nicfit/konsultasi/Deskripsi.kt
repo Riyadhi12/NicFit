@@ -1,5 +1,6 @@
 package com.example.nicfit_22_bios.views.tabview
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,7 @@ import com.example.nicfit.components.ConfirmationButton
 import com.example.nicfit.components.ProModalSheet
 import com.example.nicfit.components.WelcomPaidModalSheet
 import kotlinx.coroutines.launch
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,7 +48,7 @@ fun Deskripsi(
                     false ->{
                         scope.launch { sheetState.hide() }.invokeOnCompletion {
                             if (!sheetState.isVisible) {
-                                showBottomSheet.value = false
+                                showBottomSheet.value = true
                             }
                         }
                     }
@@ -81,7 +83,7 @@ fun Deskripsi(
                                     showBottomSheet.value = false
                                 }
                             }
-                            navHostController.navigate("payment_bank")
+                            navHostController.navigate("payment_bank/false")
                         })}
             }
         }
