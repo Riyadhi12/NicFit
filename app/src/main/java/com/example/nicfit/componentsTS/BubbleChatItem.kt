@@ -38,11 +38,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.nicfit.R
+import com.example.nicfit.componentsTS.poppinFamily
 //import com.example.nicfit.model.Message
 import com.example.nicfit_22_bios.model.Message
 
@@ -59,17 +61,18 @@ fun MessageItem(message: Message, modifier: Modifier) {
         }
     ){
         Card(
-            colors = CardDefaults.cardColors(colorResource(id = R.color.chat_bubble_color).copy(alpha = 0.2f))
+            colors = CardDefaults.cardColors(colorResource(id = R.color.chat_bubble_color).copy(alpha = 0.2f)),
+            modifier = modifier.width(256.dp)
         ){
             Column(
                 modifier = modifier
                     .width(190.dp)
                     .padding(8.dp)
             ) {
-                Text(text = message.text)
+                Text(text = message.text, fontFamily = poppinFamily, fontWeight = FontWeight.Normal)
                 Text(
                     text = "08.30 AM",
-                    fontSize = 10.sp
+                    fontSize = 10.sp, fontFamily = poppinFamily, fontWeight = FontWeight.Normal
                 )
             }
         }
@@ -101,7 +104,7 @@ fun MessageList(
     val messageText = remember { mutableStateOf("") }
     val colorBackground = colorResource(id = R.color.blue_nicfit)
     Column (
-        modifier = modifier.fillMaxHeight(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Bottom
     ){
         LazyColumn {
@@ -123,20 +126,21 @@ fun MessageList(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ){
             OutlinedTextField(
                 leadingIcon = {Image(painter = painterResource(id = R.drawable.smile), contentDescription = "", modifier = modifier.size(36.dp))},
                 shape = RoundedCornerShape(40.dp),
-                modifier = modifier,
+                modifier = modifier.fillMaxWidth(0.8f),
                 value = messageText.value,
                 onValueChange = { messageText.value = it },
                 placeholder = { Text(text = "Pesan")},
                 colors = TextFieldDefaults.colors(
                     focusedIndicatorColor = Color.Gray,
                     unfocusedIndicatorColor = Color.Gray,
-                    unfocusedContainerColor = Color.Transparent,
-                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = Color.White,
                     cursorColor = Color.Black,
                     )
             )

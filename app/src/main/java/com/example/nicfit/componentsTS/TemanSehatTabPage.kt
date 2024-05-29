@@ -27,7 +27,8 @@ import com.example.nicfit_22_bios.views.tabview.Ulasan
 @Composable
 fun TemanSehatTabPage(
     modifier: Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    keyword:String
 ){
     val tabIndex = remember { mutableIntStateOf(0) }
     val tabs = listOf("Teman Sehat", "Teman Saya")
@@ -49,8 +50,8 @@ fun TemanSehatTabPage(
         }
 
         when (tabIndex.intValue) {
-            0 -> TemanSehatTabView(modifier = modifier, isTemanSehat = true, navController = navController)
-            1 -> TemanSehatTabView(modifier = modifier, isTemanSehat = false, navController = navController)
+            0 -> TemanSehatTabView(modifier = modifier, isTemanSehat = true, navController = navController, keyword = keyword)
+            1 -> TemanSehatTabView(modifier = modifier, isTemanSehat = false, navController = navController, keyword = keyword)
         }
     }
 }

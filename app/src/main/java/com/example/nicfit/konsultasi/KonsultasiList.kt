@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -26,6 +28,9 @@ fun KonsultasiList(
     modifier:Modifier,
     navHostController: NavHostController
 ){
+    val searchKeyword = remember {
+        mutableStateOf("")
+    }
     Box(modifier = modifier){
         CustomizedBackground()
         Column {
@@ -40,7 +45,9 @@ fun KonsultasiList(
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp))
-            CustomizedSearchBar(keyword = "Cari", modifier = modifier.padding(top = 16.dp))
+            CustomizedSearchBar(keyword = searchKeyword.value, {
+                searchKeyword.value = it
+            },modifier = modifier.padding(top = 16.dp))
             KonsultasiTabViewPage(modifier = modifier, isForDetail = false, navHostController  = navHostController, false)
         }
     }

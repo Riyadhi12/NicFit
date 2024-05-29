@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -17,7 +19,8 @@ import com.example.nicfit_22_bios.model.TemanSehatItem
 fun TemanSehatTabView(
     modifier: Modifier,
     isTemanSehat:Boolean,
-    navController: NavHostController
+    navController: NavHostController,
+    keyword: String
 ){
     val temanSehatLists = listOf(
         TemanSehatItem(title = "Pasukan Berhenti Merokok", number = "100", false, R.drawable.pasukan_berhenti_merokok),
@@ -29,32 +32,57 @@ fun TemanSehatTabView(
     val temanSayaLists = listOf(
         TemanSehatItem(title = "Pasukan Berhenti Merokok", number = "100", true, R.drawable.pasukan_berhenti_merokok)
     )
+
+    val result = if (isTemanSehat) {
+        temanSehatLists
+    } else temanSayaLists
+
+    val filterData = result.filter { data->
+        data.title.contains(keyword, ignoreCase = true)
+    }
+
     LazyColumn (
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 20.dp, horizontal = 12.dp)
+            .padding(vertical = 20.dp, horizontal = 12.dp),
     ){
-        items(if (isTemanSehat) temanSehatLists.size else temanSayaLists.size) {
-            if (isTemanSehat) {
-                TemanSehatItemList(
-                    modifier = modifier.fillMaxWidth().padding(vertical = 12.dp),
-                    title = temanSehatLists[it].title,
-                    number = temanSehatLists[it].number,
-                    joinedStatus = temanSehatLists[it].isJoined,
+        items(filterData.size){
+            TemanSehatItemList(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 12.dp),
+                    title = filterData[it].title,
+                    number = filterData[it].number,
+                    joinedStatus = filterData[it].isJoined,
                     navController = navController,
-                    image = temanSehatLists[it].imageInt
-                )
-            } else {
-                TemanSehatItemList(
-                    modifier = modifier.fillMaxWidth().padding(vertical = 12.dp),
-                    title = temanSayaLists[it].title,
-                    number = temanSayaLists[it].number,
-                    joinedStatus = temanSayaLists[it].isJoined,
-                    navController = navController,
-                    image = temanSayaLists[it].imageInt
-                    )
-            }
+                    image = filterData[it].imageInt
+            )
         }
+//        items(if (isTemanSehat) temanSehatLists.size else temanSayaLists.size) {
+//            if (isTemanSehat) {
+//                TemanSehatItemList(
+//                    modifier = modifier
+//                        .fillMaxWidth()
+//                        .padding(vertical = 12.dp),
+//                    title = temanSehatLists[it].title,
+//                    number = temanSehatLists[it].number,
+//                    joinedStatus = temanSehatLists[it].isJoined,
+//                    navController = navController,
+//                    image = temanSehatLists[it].imageInt
+//                )
+//            } else {
+//                TemanSehatItemList(
+//                    modifier = modifier
+//                        .fillMaxWidth()
+//                        .padding(vertical = 12.dp),
+//                    title = temanSayaLists[it].title,
+//                    number = temanSayaLists[it].number,
+//                    joinedStatus = temanSayaLists[it].isJoined,
+//                    navController = navController,
+//                    image = temanSayaLists[it].imageInt
+//                    )
+//            }
+//        }
     }
 }
 

@@ -29,8 +29,7 @@ fun KonsultasiDetail(
     valueStr : String
 ){
     val value = valueStr.toBoolean()
-    Box {
-        Log.d("Logging Screen","Di konsultasi detail")
+    Box (modifier = modifier){
         CustomizedWhiteBackground()
         Column {
             Image(painter = painterResource(id = R.drawable.doctor_nobg), contentDescription = null,
