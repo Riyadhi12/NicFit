@@ -11,8 +11,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AttachMoney
+import androidx.compose.material.icons.filled.SmokingRooms
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
@@ -21,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -42,7 +47,7 @@ fun misi() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 30.dp, start = 31.dp)
+                .padding(top = 33.dp, start = 31.dp)
         ) {
             Column {
                 Text(
@@ -92,7 +97,7 @@ fun misi() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 75.dp)
+                .padding(top = 90.dp)
         ) {
             CalendarView()
         }
@@ -101,7 +106,7 @@ fun misi() {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .fillMaxHeight(0.75f)
+                .fillMaxHeight(0.71f)
                 .background(
                     color = Color.White,
                     shape = RoundedCornerShape(topStartPercent = 10, topEndPercent = 10)
@@ -111,7 +116,7 @@ fun misi() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 135.dp) // Adjust padding to position the Column
+            .padding(top = 165.dp) // Adjust padding to position the Column
     ) {
         Row(
             modifier = Modifier
@@ -125,20 +130,16 @@ fun misi() {
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .background(
-                        color = Color.Green.copy(alpha = 0.2f),
-                        shape = CircleShape
-                    )
-                    .padding(12.dp),
-            ) {
+            Box {
                 Icon(
-                    painter = painterResource(id = R.drawable.bag),
+                    imageVector = Icons.Default.AttachMoney,
                     contentDescription = "Hemat Uang",
-                    tint = Color.Green,
-                    modifier = Modifier.size(48.dp)
+                    tint = Color(0xFF4CAF50),
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xFFE8F5E9))
+                        .padding(8.dp)
                 )
             }
             Column(
@@ -153,19 +154,24 @@ fun misi() {
                     text = "Rp.50,000",
                 )
             }
-            Box(
+            Divider(
+                color = Color.Gray,
                 modifier = Modifier
-                    .size(48.dp)
-                    .background(
-                        color = Color.Blue.copy(alpha = 0.2f),
-                        shape = CircleShape
-                    )
-                    .padding(12.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.bag2),
-                    contentDescription = "Hemat Uang"
+                    .height(40.dp)
+                    .width(1.dp)
+            )
+            Spacer(modifier = Modifier.width(10.dp))
+
+            Box {
+                Icon(
+                    imageVector = Icons.Default.SmokingRooms,
+                    contentDescription = "Tidak Merokok",
+                    tint = Color(0xFFF44336),
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(Color(0xFFFFEBEE))
+                        .padding(8.dp)
                 )
             }
             Column(
@@ -217,7 +223,7 @@ fun misi() {
             }
         }
         Column(
-            modifier = Modifier.padding(start = 28.dp, top = 18.dp, bottom = 16.dp)
+            modifier = Modifier.padding(start = 28.dp, top = 18.dp, bottom = 12.dp)
         ) {
             Text(
                 text = "Misi",

@@ -7,10 +7,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AttachMoney
+import androidx.compose.material.icons.filled.SmokingRooms
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -128,20 +132,16 @@ fun beranda(navController: NavController) {
             .padding(16.dp),
          verticalAlignment = Alignment.CenterVertically
       ) {
-         Box(
-            modifier = Modifier
-               .size(48.dp)
-               .background(
-                  color = Color.Green.copy(alpha = 0.2f),
-                  shape = CircleShape
-               )
-               .padding(12.dp),
-         ) {
+         Box {
             Icon(
-               painter = painterResource(id = R.drawable.bag),
+               imageVector = Icons.Default.AttachMoney,
                contentDescription = "Hemat Uang",
-               tint = Color.Green,
-               modifier = Modifier.size(48.dp)
+               tint = Color(0xFF4CAF50),
+               modifier = Modifier
+                  .size(40.dp)
+                  .clip(CircleShape)
+                  .background(Color(0xFFE8F5E9))
+                  .padding(8.dp)
             )
          }
          Column(
@@ -156,19 +156,24 @@ fun beranda(navController: NavController) {
                text = "Rp.50,000",
             )
          }
-         Box(
+         Divider(
+            color = Color.Gray,
             modifier = Modifier
-               .size(48.dp)
-               .background(
-                  color = Color.Blue.copy(alpha = 0.2f),
-                  shape = CircleShape
-               )
-               .padding(12.dp),
-            contentAlignment = Alignment.Center
-         ) {
-            Image(
-               painter = painterResource(id = R.drawable.bag2),
-               contentDescription = "Hemat Uang"
+               .height(40.dp)
+               .width(1.dp)
+         )
+         Spacer(modifier = Modifier.width(10.dp))
+
+         Box {
+            Icon(
+               imageVector = Icons.Default.SmokingRooms,
+               contentDescription = "Tidak Merokok",
+               tint = Color(0xFFF44336),
+               modifier = Modifier
+                  .size(40.dp)
+                  .clip(CircleShape)
+                  .background(Color(0xFFFFEBEE))
+                  .padding(8.dp)
             )
          }
          Column(

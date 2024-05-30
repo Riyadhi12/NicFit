@@ -72,7 +72,7 @@ fun ExerciseItem(
 ) {
     Column(
         modifier = Modifier
-            .padding(top = 13.dp,start = 28.dp, bottom = 20.dp),
+            .padding(top = 13.dp,start = 28.dp, bottom = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
