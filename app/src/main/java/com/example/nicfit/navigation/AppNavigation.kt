@@ -109,8 +109,8 @@ fun AppNavigation(
                         },
                         alwaysShowLabel = true,
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color.Red,
-                            selectedTextColor = Color.Blue,
+                            selectedIconColor = Color(0xFF508CAE),
+                            selectedTextColor = Color(0xFF508CAE),
                             unselectedIconColor = Color.Gray,
                             unselectedTextColor = Color.Gray
                         )
@@ -122,7 +122,7 @@ fun AppNavigation(
         PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.splashScreen.name,
+            startDestination = Screens.misi.name,
             modifier = modifier
                 .padding(PaddingValues)
         ){

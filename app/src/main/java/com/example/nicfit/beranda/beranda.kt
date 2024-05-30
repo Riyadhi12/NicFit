@@ -114,12 +114,12 @@ fun beranda(navController: NavController) {
    Column(
       modifier = Modifier
          .fillMaxWidth()
-         .padding(top = 160.dp) // Adjust padding to position the Column
+         .padding(top = 170.dp) // Adjust padding to position the Column
    ) {
       Row(
          modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 20.dp, horizontal = 24.dp)
+            .padding(vertical = 10.dp, horizontal = 24.dp)
             .shadow(3.dp, shape = RoundedCornerShape(20.dp))
             .background(
                color = Color.White,
