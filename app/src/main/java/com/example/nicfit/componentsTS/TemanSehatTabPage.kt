@@ -22,7 +22,7 @@ import androidx.navigation.NavHostController
 import com.example.nicfit.R
 import com.example.nicfit_22_bios.views.tabview.Deskripsi
 import com.example.nicfit_22_bios.views.tabview.TemanSehatTabView
-import com.example.nicfit_22_bios.views.tabview.Ulasan
+
 
 @Composable
 fun TemanSehatTabPage(
