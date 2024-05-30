@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.nicfit.R
 import com.example.nicfit.components.ConfirmationButton
 
@@ -31,11 +32,11 @@ fun TemanSehatModalSheet(
     title: String,
     membersCount : String,
     description : String,
-    onDismiss : ()->Unit
+    onDismiss : ()->Unit,
+    navHostController: NavHostController
 ) {
     Column(
         modifier = modifier
-            .height(264.dp)
             .fillMaxWidth()
             .padding(horizontal = 28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -58,13 +59,20 @@ fun TemanSehatModalSheet(
             }
         }
         Text(text = description, fontWeight = FontWeight.Normal, fontFamily = poppinFamily, modifier = modifier.padding(top = 18.dp))
-        ConfirmationButton(text = "Gabung Komunitas", toConfirm = true, onClickButton = onDismiss, modifier = Modifier.padding(top = 16.dp).fillMaxWidth())
-        Spacer(modifier = modifier.size(16.dp))
+        ConfirmationButton(text = "Kembali", toConfirm = false, onClickButton = {
+            navHostController.navigateUp()
+        }, modifier = Modifier
+            .padding(top = 16.dp)
+            .fillMaxWidth())
+        ConfirmationButton(text = "Gabung Komunitas", toConfirm = true, onClickButton = onDismiss, modifier = Modifier
+            .padding(top = 16.dp)
+            .fillMaxWidth())
+        Spacer(modifier = modifier.size(24.dp))
     }
 }
 
-@Preview
-@Composable
-fun TemanSehatModalSheetPreview() {
-    TemanSehatModalSheet(Modifier, imageInt = R.drawable.pasukan_berhenti_merokok, title = "Pasukan Berhenti Merokok", membersCount = "4,412", description = "Berbincang santuy tips andtrik untuk berhenti merokok", {})
-}
+//@Preview
+//@Composable
+//fun TemanSehatModalSheetPreview() {
+//    TemanSehatModalSheet(Modifier, imageInt = R.drawable.pasukan_berhenti_merokok, title = "Pasukan Berhenti Merokok", membersCount = "4,412", description = "Berbincang santuy tips andtrik untuk berhenti merokok", {})
+//}

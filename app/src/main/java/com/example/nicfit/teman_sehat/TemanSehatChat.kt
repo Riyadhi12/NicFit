@@ -53,7 +53,8 @@ fun TemanSehatChat(
                     description = "Berbincang santuy tips and trik untuk berhenti merokok",
                     onDismiss = {
                         showBottomSheet.value = false
-                    }
+                    },
+                    navHostController = navController
                 )
             }
         }

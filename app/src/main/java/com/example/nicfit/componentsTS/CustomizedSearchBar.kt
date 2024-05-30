@@ -44,7 +44,7 @@ fun CustomizedSearchBar(
             .fillMaxWidth()
             .heightIn(minOf(24.dp))
             .clip(
-                RoundedCornerShape(36.dp)
+                RoundedCornerShape(12.dp)
             )
             .shadow(elevation = 24.dp, shape = RoundedCornerShape(16.dp))
         ,
