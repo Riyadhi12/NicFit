@@ -22,6 +22,7 @@ import com.example.nicfit.beranda.beranda
 import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
+import com.example.nicfit.component.MyApp
 import com.example.nicfit.daftar.RegisScreen
 import com.example.nicfit.daftar.survei
 import com.example.nicfit.lupasandi.inputEmail
@@ -39,6 +40,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppNavigation()
+            //MyApp()
+            //misi()
         }
     }
 }
