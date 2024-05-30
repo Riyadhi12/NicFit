@@ -2,6 +2,7 @@ package com.example.nicfit.components
 
 import android.graphics.drawable.shapes.RectShape
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -30,16 +32,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.nicfit.R
 import com.example.nicfit.componentsTS.poppinFamily
+import com.example.nicfit.navigation.Screens
 
 @Composable
 fun KonsulListItem(
-    modifier: Modifier
+    modifier: Modifier,
+    navHostController: NavHostController
 ) {
     Card(
         backgroundColor = Color.White,
-        modifier = modifier.fillMaxWidth().padding(12.dp),
+        modifier = modifier.fillMaxWidth().padding(12.dp).clickable {
+            navHostController.navigate("${Screens.detail.name}/false") },
         elevation = 8.dp
         ) {
         Column(
@@ -103,5 +109,5 @@ fun KonsulListItem(
 @Preview
 @Composable
 fun KonsulListItemPreview() {
-    KonsulListItem(modifier = Modifier)
+    KonsulListItem(modifier = Modifier, navHostController = NavHostController(LocalContext.current))
 }

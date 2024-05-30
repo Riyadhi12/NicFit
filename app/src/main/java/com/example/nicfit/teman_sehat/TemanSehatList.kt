@@ -47,7 +47,7 @@ fun TemanSehatList(
                 modifier = modifier.fillMaxWidth().padding(horizontal = 12.dp))
             CustomizedSearchBar(keyword = searchKeyword.value, {
                 searchKeyword.value = it
-            }, modifier = modifier.padding(top = 16.dp))
+            }, modifier = modifier.padding(top = 8.dp).padding(horizontal = 18.dp))
             TemanSehatTabPage(modifier = modifier, navController = navController, searchKeyword.value)
         }
     }

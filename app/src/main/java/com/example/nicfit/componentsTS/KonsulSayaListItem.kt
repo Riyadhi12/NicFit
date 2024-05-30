@@ -79,7 +79,7 @@ fun KonsulSayaListItem(
 
                     }
                     ConfirmationButton(text = "Chat Konsultan", toConfirm = true, onClickButton = {
-                        navHostController.navigate("${Screens.detail.name}/false")
+                        navHostController.navigate(Screens.konsul_chat.name)
                     }, modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp))
                 }
             }

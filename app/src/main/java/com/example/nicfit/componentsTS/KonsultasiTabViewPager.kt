@@ -68,11 +68,11 @@ fun KonsultasiTabViewPage(
                     Column (
                         modifier.verticalScroll(scrollable)
                     ){
-                        KonsulListItem(modifier = modifier)
-                        KonsulListItem(modifier = modifier)
-                        KonsulListItem(modifier = modifier)
-                        KonsulListItem(modifier = modifier)
-                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier, navHostController)
+                        KonsulListItem(modifier = modifier, navHostController)
+                        KonsulListItem(modifier = modifier, navHostController)
+                        KonsulListItem(modifier = modifier, navHostController)
+                        KonsulListItem(modifier = modifier, navHostController)
                     }
                 }
             }
