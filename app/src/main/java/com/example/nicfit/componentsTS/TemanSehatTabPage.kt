@@ -2,10 +2,6 @@ package com.example.nicfit.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -13,13 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
-import com.example.nicfit_22_bios.views.tabview.Deskripsi
 import com.example.nicfit_22_bios.views.tabview.TemanSehatTabView
-import com.example.nicfit_22_bios.views.tabview.Ulasan
+
 
 @Composable
 fun TemanSehatTabPage(
