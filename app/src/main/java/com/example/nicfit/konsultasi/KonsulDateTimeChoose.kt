@@ -7,12 +7,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.nicfit.components.ConfirmationButton
 import com.example.nicfit.components.DatePickCard
 import com.example.nicfit.components.TimePickCard
+import com.example.nicfit.componentsTS.poppinFamily
 
 
 @Composable
@@ -21,7 +23,7 @@ fun KonsulDateTimeChoose(
     navController:NavHostController
 ){
     Column (modifier = modifier.fillMaxWidth()){
-        Text(text = "Pilih Tanggal", modifier = modifier.padding(top = 12.dp, start = 12.dp, bottom = 12.dp))
+        Text(text = "Pilih Tanggal", modifier = modifier.padding(top = 12.dp, start = 12.dp, bottom = 12.dp), fontFamily = poppinFamily, fontWeight = FontWeight.Normal)
         DatePickCard(modifier = modifier)
         TimePickCard(modifier = modifier)
         ConfirmationButton(text = "Tetapkan Waktu", toConfirm = true, onClickButton = {

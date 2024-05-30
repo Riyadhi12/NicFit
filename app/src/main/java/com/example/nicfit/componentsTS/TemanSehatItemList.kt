@@ -4,28 +4,27 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.*
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.nicfit.R
-import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatChat
+import com.example.nicfit.componentsTS.poppinFamily
+import com.example.nicfit.navigation.Screens
 
 @Composable
 fun  TemanSehatItemList(
@@ -33,38 +32,61 @@ fun  TemanSehatItemList(
     title: String,
     number: String,
     joinedStatus:Boolean,
+    image:Int,
     navController: NavHostController
 ){
             Card (
                 modifier = modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(Color.White),
-                elevation = CardDefaults.elevatedCardElevation(5.dp)
-            ){
+                backgroundColor = Color.White,
+                elevation = 5.dp
+            ) {
                 Row (
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = modifier.padding(horizontal = 16.dp)
                 ){
-                    Column {
-                        Text(text = title)
-                        Row {
-                            Image(
-                                painter = painterResource(id = R.drawable.ic_people),
-                                contentDescription = "")
-                            Text(text = number + "orang tergabung")
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(
+                            painter = painterResource(id = image), contentDescription = "",
+                            modifier = Modifier
+                                .size(60.dp)
+                                .padding(end = 8.dp)
+                        )
+                        Column {
+                            Text(text = title, fontSize = 11.sp, fontFamily = poppinFamily, fontWeight = FontWeight.Bold)
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_people),
+                                    contentDescription = "",
+                                    modifier = Modifier.size(18.dp).
+                                    padding(end = 4.dp)
+                                )
+                                Text(text = "$number orang tergabung",fontSize = 12.sp, fontFamily = poppinFamily, color = Color.Gray)
+                            }
                         }
                     }
-
-                    ConfirmationButton(text = when(joinedStatus){
-                        true -> "Chat"
-                        false -> "Gabung"
-                    }, toConfirm = true,
+                    ConfirmationButton(
+                        text = when (joinedStatus) {
+                            true -> "Chat"
+                            false -> "Gabung"
+                        }, toConfirm = true,
                         onClickButton = {
-                            navController.navigate("chat")
+                            navController.navigate(Screens.teman_sehat_chat.name)
                         },
-                        modifier = modifier
+                        modifier = Modifier.width(112.dp).size(DpSize.Unspecified)
                     )
                 }
             }
+
     }
+
+
+@Preview
+@Composable
+fun TemanSehatItemPreview(){
+TemanSehatItemList(modifier = Modifier, title = "Pasukan rokok", number = "1000", joinedStatus = false, R.drawable.cintai_hidupmu,navController = NavHostController(LocalContext.current))
+}

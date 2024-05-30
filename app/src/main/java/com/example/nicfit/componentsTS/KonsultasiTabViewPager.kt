@@ -3,6 +3,8 @@ package com.example.nicfit.components
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.TabRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -62,11 +64,16 @@ fun KonsultasiTabViewPage(
                     isPaid
                 )
                 false ->{
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
-                    KonsulListItem(modifier = modifier)
+                    val scrollable = rememberScrollState()
+                    Column (
+                        modifier.verticalScroll(scrollable)
+                    ){
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                        KonsulListItem(modifier = modifier)
+                    }
                 }
             }
             1 -> when(isForDetail){
@@ -74,9 +81,13 @@ fun KonsultasiTabViewPage(
                     modifier
                 )
                 false ->{
-                    KonsulSayaListItem(modifier = modifier, navHostController = navHostController)
-                    KonsulSayaListItem(modifier = modifier, navHostController = navHostController)
-                    KonsulSayaListItem(modifier = modifier, navHostController = navHostController)
+                    val scrollable = rememberScrollState()
+                    Column (
+                        modifier.verticalScroll(scrollable)
+                    ){
+                        KonsulSayaListItem(modifier = modifier, navHostController = navHostController)
+                        KonsulSayaListItem(modifier = modifier, navHostController = navHostController)
+                        KonsulSayaListItem(modifier = modifier, navHostController = navHostController)}
                 }
             }
         }

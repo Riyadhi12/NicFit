@@ -7,7 +7,4 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.util.prefs.Preferences
 
-class DataStore(private val context: Context){
-
-
-}
+class DataStore(private val context: Context)

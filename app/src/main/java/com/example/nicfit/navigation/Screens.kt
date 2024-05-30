@@ -28,7 +28,8 @@ enum class Screens {
     chooseDateTime,
     konsul_method,
     booking_detail,
-    konsul_chat
+    konsul_chat,
+    teman_sehat_chat
 }
 
 

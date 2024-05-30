@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.ArrowForwardIos
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Card
@@ -96,7 +94,7 @@ fun profile(navController: NavController) {
         ProfileMenuItem(icon = Icons.Default.Settings, text = "Pengaturan"){
             navController.navigate(Screens.pengaturan.name)
         }
-        ProfileMenuBack(icon = Icons.Default.ExitToApp, text = "Keluar"){
+        ProfileMenuBack(icon = Icons.AutoMirrored.Filled.ExitToApp, text = "Keluar"){
 
         }
     }
@@ -129,7 +127,7 @@ fun ProfileMenuItem(icon: ImageVector, text: String,onItemClick: ()-> Unit) {
             modifier = Modifier.weight(1f)
         )
         Icon(
-            imageVector = Icons.Default.ArrowForwardIos,
+            imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
             contentDescription = "Arrow",
             tint = Color.Gray,
             modifier = Modifier.

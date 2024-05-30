@@ -18,6 +18,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -100,9 +101,9 @@ fun login(navController: NavController){
                     modifier = Modifier,
                     fontSize = 13.sp)
             },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
+            colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF508CAE),
-                focusedLabelColor = Color.Gray
+                focusedLabelColor = Color.Gray,
             )
         )
 
@@ -136,9 +137,9 @@ fun login(navController: NavController){
             },
             visualTransformation = if (passwordVisibility) VisualTransformation.None
             else PasswordVisualTransformation(),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
+            colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Color(0xFF508CAE),
-                focusedLabelColor = Color.Gray
+                focusedLabelColor = Color.Gray,
             )
         )
         Spacer(modifier = Modifier.height(7.dp))

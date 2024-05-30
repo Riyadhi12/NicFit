@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue_nicfit">#508CAE</color>
     <color name="chat_bubble_color">#508CAE</color>
+    <color name="avatar_text">#2D84FB</color>
+    <color name="avatar_text_background">#D3EEFE</color>
+
 </resources>

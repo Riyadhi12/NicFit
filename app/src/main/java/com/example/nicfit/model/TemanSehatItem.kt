@@ -7,5 +7,6 @@ import androidx.compose.ui.Modifier
 data class TemanSehatItem(
    val title:String,
    val number:String,
-   val isJoined:Boolean
+   val isJoined:Boolean,
+   val imageInt : Int
 )

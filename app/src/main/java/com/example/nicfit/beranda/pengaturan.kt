@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Help
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Phone
@@ -74,7 +72,7 @@ fun pengaturan(navController: NavController) {
             notifItem(icon = Icons.Default.Notifications, text = "Notifikasi"){
 
             }
-            pengaturanItem(icon = Icons.Default.Help, text = "Bantuan"){
+            pengaturanItem(icon = Icons.AutoMirrored.Filled.Help, text = "Bantuan"){
                 navController.navigate(Screens.bantuan.name)
             }
             pengaturanItem(icon = Icons.Default.Lock, text = "Kebijakan Privasi"){
@@ -112,7 +110,7 @@ fun pengaturanItem(icon: ImageVector, text: String, onItemClick: ()-> Unit) {
             modifier = Modifier.weight(1f)
         )
         Icon(
-            imageVector = Icons.Default.ArrowForward,
+            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
             contentDescription = "Arrow",
             tint = Color.Gray,
             modifier = Modifier.

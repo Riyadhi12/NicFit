@@ -26,13 +26,12 @@ import com.example.nicfit.R
 @Composable
 fun CustomizedSearchBar(
     keyword: String,
-//    onKeywordChange: (String) -> Unit,
+    onKeywordChange: (String) -> Unit,
     modifier: Modifier
 ) {
     OutlinedTextField(
-
         value = keyword,
-        onValueChange = {},
+        onValueChange = onKeywordChange,
         singleLine = true,
         leadingIcon = {
             Icon(imageVector = Icons.Filled.Search, contentDescription = "")

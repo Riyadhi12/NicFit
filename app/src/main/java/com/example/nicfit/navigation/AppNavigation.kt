@@ -18,12 +18,10 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.nicfit.artikel.artikel
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
@@ -40,7 +38,6 @@ import com.example.nicfit.daftar.survei
 import com.example.nicfit.konsultasi.BookingDetail
 import com.example.nicfit.konsultasi.KonsulChat
 
-import com.example.nicfit.konsultasi.konsultasi
 import com.example.nicfit.lupasandi.cdVerifikasi
 import com.example.nicfit.lupasandi.inputEmail
 import com.example.nicfit.lupasandi.konfirmasiSandi
@@ -48,7 +45,6 @@ import com.example.nicfit.masuk.login
 import com.example.nicfit.misi.misi
 import com.example.nicfit.splash.PagerScreen
 import com.example.nicfit.splash.splashScreen
-import com.example.nicfit.teman_sehat.temanSehat
 import com.example.nicfit.konsultasi.KonsulDateTimeChoose
 import com.example.nicfit.konsultasi.KonsulMethod
 import com.example.nicfit.konsultasi.KonsultasiDetail
@@ -56,6 +52,7 @@ import com.example.nicfit.konsultasi.KonsultasiList
 import com.example.nicfit.konsultasi.PaymentMethod
 import com.example.nicfit.konsultasi.PaymentStatus
 import com.example.nicfit.konsultasi.TransferBankBca
+import com.example.nicfit.teman_sehat.TemanSehatChat
 import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatList
 
 @Composable
@@ -217,6 +214,9 @@ fun AppNavigation(
             }
             composable(route = Screens.konfirmasiSandi.name) {
                 konfirmasiSandi(navController)
+            }
+            composable(route = Screens.teman_sehat_chat.name){
+                TemanSehatChat(modifier = Modifier, navController = navController)
             }
         }
     }
