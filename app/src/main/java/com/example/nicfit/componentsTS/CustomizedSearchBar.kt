@@ -2,6 +2,7 @@ package com.example.nicfit.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -42,7 +43,7 @@ fun CustomizedSearchBar(
         modifier = modifier
             .padding(12.dp)
             .fillMaxWidth()
-            .heightIn(minOf(24.dp))
+            .height(62.dp)
             .clip(
                 RoundedCornerShape(12.dp)
             )

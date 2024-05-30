@@ -3,6 +3,7 @@ package com.example.nicfit.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,8 +38,8 @@ fun CustomizedBackground() {
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .height(590.dp)
-                .clip(RoundedCornerShape(topStart = 50.dp, topEnd = 50.dp))
+                .fillMaxHeight(0.75f)
+                .clip(RoundedCornerShape(topStartPercent = 10, topEndPercent = 10))
                 .background(Color.White)
         )
     }
