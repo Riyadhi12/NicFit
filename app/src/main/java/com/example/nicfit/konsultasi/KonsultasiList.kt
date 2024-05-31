@@ -47,7 +47,7 @@ fun KonsultasiList(
                     .padding(horizontal = 12.dp))
             CustomizedSearchBar(keyword = searchKeyword.value, {
                 searchKeyword.value = it
-            },modifier = modifier.padding(top = 16.dp).padding(horizontal = 16.dp))
+            },modifier = modifier.padding(top = 6.dp).padding(horizontal = 16.dp))
             KonsultasiTabViewPage(modifier = modifier, isForDetail = false, navHostController  = navHostController, false)
         }
     }
