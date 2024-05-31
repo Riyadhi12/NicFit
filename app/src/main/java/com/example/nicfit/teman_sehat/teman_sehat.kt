@@ -55,7 +55,6 @@ fun temanSehat() {
         }
         Box( //Box Bawah
             modifier = Modifier
-                //.padding(start = 6.dp, end = 6.dp)
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .fillMaxHeight(0.70f)

@@ -10,9 +10,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.ContactPhone
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Web
@@ -158,7 +157,7 @@ fun ContactCard(
             Spacer(modifier = Modifier.weight(1f))
 
             Icon(
-                Icons.Default.ArrowForwardIos,
+                Icons.AutoMirrored.Filled.ArrowForwardIos,
                 contentDescription = "Arrow",
                 tint = Color.Gray
             )

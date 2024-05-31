@@ -29,6 +29,7 @@ enum class Screens {
     konsul_method,
     booking_detail,
     konsul_chat,
+    teman_sehat_chat,
     artikelKecanduan,
     artikelEmosional,
     detailKecanduan,

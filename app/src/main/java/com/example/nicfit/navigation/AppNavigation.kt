@@ -25,11 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import artikel
-import com.example.nicfit.artikel.artikelEmosional
-import com.example.nicfit.artikel.artikelKecanduan
-import com.example.nicfit.artikel.detailEmosional
-import com.example.nicfit.artikel.detailKecanduan
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
 import com.example.nicfit.beranda.bantuan
@@ -52,13 +47,6 @@ import com.example.nicfit.data.dataKecanduan.names
 import com.example.nicfit.data.dataKecanduan.penerbit
 import com.example.nicfit.konsultasi.BookingDetail
 import com.example.nicfit.konsultasi.KonsulChat
-import com.example.nicfit.konsultasi.KonsulDateTimeChoose
-import com.example.nicfit.konsultasi.KonsulMethod
-import com.example.nicfit.konsultasi.KonsultasiDetail
-import com.example.nicfit.konsultasi.KonsultasiList
-import com.example.nicfit.konsultasi.PaymentMethod
-import com.example.nicfit.konsultasi.PaymentStatus
-import com.example.nicfit.konsultasi.TransferBankBca
 import com.example.nicfit.lupasandi.cdVerifikasi
 import com.example.nicfit.lupasandi.inputEmail
 import com.example.nicfit.lupasandi.konfirmasiSandi
@@ -66,7 +54,20 @@ import com.example.nicfit.masuk.login
 import com.example.nicfit.misi.misi
 import com.example.nicfit.splash.PagerScreen
 import com.example.nicfit.splash.splashScreen
+import com.example.nicfit.konsultasi.KonsulDateTimeChoose
+import com.example.nicfit.konsultasi.KonsulMethod
+import com.example.nicfit.konsultasi.KonsultasiDetail
+import com.example.nicfit.konsultasi.KonsultasiList
+import com.example.nicfit.konsultasi.PaymentMethod
+import com.example.nicfit.konsultasi.PaymentStatus
+import com.example.nicfit.konsultasi.TransferBankBca
+import com.example.nicfit.teman_sehat.TemanSehatChat
 import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatList
+import artikel
+import com.example.nicfit.artikel.artikelEmosional
+import com.example.nicfit.artikel.artikelKecanduan
+import com.example.nicfit.artikel.detailEmosional
+import com.example.nicfit.artikel.detailKecanduan
 
 @Composable
 fun AppNavigation(
@@ -125,8 +126,8 @@ fun AppNavigation(
                         },
                         alwaysShowLabel = true,
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color.Red,
-                            selectedTextColor = Color.Blue,
+                            selectedIconColor = Color(0xFF508CAE),
+                            selectedTextColor = Color(0xFF508CAE),
                             unselectedIconColor = Color.Gray,
                             unselectedTextColor = Color.Gray
                         )
@@ -138,7 +139,7 @@ fun AppNavigation(
         PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screens.splashScreen.name,
+            startDestination = Screens.misi.name,
             modifier = modifier
                 .padding(PaddingValues)
         ){
@@ -230,6 +231,9 @@ fun AppNavigation(
             }
             composable(route = Screens.konfirmasiSandi.name) {
                 konfirmasiSandi(navController)
+            }
+            composable(route = Screens.teman_sehat_chat.name) {
+                TemanSehatChat(modifier = Modifier, navController = navController)
             }
             composable(route = Screens.artikelKecanduan.name) {
                 artikelKecanduan(imageId, names, dates, penerbit, navController )

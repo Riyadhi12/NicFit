@@ -8,11 +8,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
@@ -24,34 +27,38 @@ import com.example.nicfit.R
 fun BankTransferInstruction(
     modifier: Modifier
 ){
-    Card {
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White
+        ),
+        elevation = CardDefaults.cardElevation(8.dp)
+    ) {
         Column {
-            Row(
-                modifier = modifier.fillMaxWidth().padding(12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "ATM")
-                Image(painter = painterResource(id = R.drawable.arrow_right), contentDescription = "", modifier = modifier.size(16.dp))
-            }
+            RowItemListBankInstruction(modifier = modifier, leadingText = "ATM")
             Divider()
-            Row(
-                modifier = modifier.fillMaxWidth().padding(12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "Mobile Banking")
-                Image(painter = painterResource(id = R.drawable.arrow_right), contentDescription = "", modifier = modifier.size(16.dp))
-            }
+            RowItemListBankInstruction(modifier = modifier, leadingText = "Mobile Banking")
             Divider()
-            Row(
-                modifier = modifier.fillMaxWidth().padding(12.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Text(text = "Internet Banking")
-                Image(painter = painterResource(id = R.drawable.arrow_right), contentDescription = "", modifier = modifier.size(16.dp))
-            }
+            RowItemListBankInstruction(modifier = modifier, leadingText = "Internet Banking"    )
         }
     }
 }
+
+@Composable
+fun RowItemListBankInstruction(
+    modifier:Modifier,
+    leadingText:String,
+){
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(12.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ){
+        Text(text = leadingText)
+        Image(painter = painterResource(id = R.drawable.arrow_right), contentDescription = "", modifier = modifier.size(16.dp))
+    }
+}
+
 
 @Preview
 @Composable

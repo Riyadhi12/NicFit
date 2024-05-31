@@ -2,6 +2,7 @@ package com.example.nicfit.components
 
 import android.graphics.drawable.shapes.RectShape
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,8 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.material.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,21 +23,30 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.nicfit.R
+import com.example.nicfit.componentsTS.poppinFamily
+import com.example.nicfit.navigation.Screens
 
 @Composable
 fun KonsulListItem(
-    modifier: Modifier
+    modifier: Modifier,
+    navHostController: NavHostController
 ) {
     Card(
-        colors = CardDefaults.cardColors(Color.White),
-        modifier = modifier.fillMaxWidth().padding(12.dp),
-        elevation = CardDefaults.cardElevation(8.dp)
+        backgroundColor = Color.White,
+        modifier = modifier.fillMaxWidth().padding(12.dp).clickable {
+            navHostController.navigate("${Screens.detail.name}/false") },
+        elevation = 8.dp
         ) {
         Column(
             modifier = modifier.padding(10.dp)
@@ -49,13 +58,14 @@ fun KonsulListItem(
                 Image(
                     painter = painterResource(id = R.drawable.doctor),
                     contentDescription = "",
-                    modifier.size(100.dp)
-                        .width(50.dp)
-                        .padding(8.dp)
+                    contentScale = ContentScale.Crop,
+                    modifier = modifier.size(80.dp)
+                        .width(30.dp)
+                        .padding(end = 8.dp)
                 )
                 Column {
-                    Text(text = stringResource(id = R.string.doctor_name))
-                    Text(text = stringResource(id = R.string.doctor_spec))
+                    Text(text = stringResource(id = R.string.doctor_name), fontWeight = FontWeight.Bold, fontFamily = poppinFamily)
+                    Text(text = stringResource(id = R.string.doctor_spec), fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 12.sp, color = Color.Gray)
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
@@ -66,7 +76,7 @@ fun KonsulListItem(
                                     contentDescription = "", modifier.size(17.dp)
                                 )
                             }
-                            Text(text = " 4.6 Review    ")
+                            Text(text = " 4.6 Review    ", fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 14.sp)
                         }
                         Row {
                             Image(
@@ -74,19 +84,22 @@ fun KonsulListItem(
                                 contentDescription = "",
                                 modifier.size(17.dp)
                             )
-                            Text(text = " 8 tahun")
+                            Text(text = " 8 tahun", fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 14.sp)
                         }
 
                     }
                 }
             }
-            Row {
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = modifier.padding(top = 4.dp)
+            ){
                 Image(
                     painter = painterResource(id = R.drawable.ic_clock),
                     contentDescription = "",
-                    modifier.size(24.dp)
+                    modifier.size(26.dp).padding(end = 8.dp)
                 )
-                Text(text = "Waktu yang tersedia")
+                Text(text = "Waktu yang tersedia", fontWeight = FontWeight.Normal, fontFamily = poppinFamily, fontSize = 14.sp, color = Color.Gray)
             }
         }
     }
@@ -96,5 +109,5 @@ fun KonsulListItem(
 @Preview
 @Composable
 fun KonsulListItemPreview() {
-    KonsulListItem(modifier = Modifier)
+    KonsulListItem(modifier = Modifier, navHostController = NavHostController(LocalContext.current))
 }
