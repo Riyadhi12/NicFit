@@ -32,12 +32,9 @@ import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
 import com.example.nicfit.daftar.RegisScreen
-
-
 import com.example.nicfit.daftar.survei
 import com.example.nicfit.konsultasi.BookingDetail
 import com.example.nicfit.konsultasi.KonsulChat
-
 import com.example.nicfit.lupasandi.cdVerifikasi
 import com.example.nicfit.lupasandi.inputEmail
 import com.example.nicfit.lupasandi.konfirmasiSandi
