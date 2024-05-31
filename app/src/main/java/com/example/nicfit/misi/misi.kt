@@ -244,9 +244,3 @@ fun misi() {
 
     }
 }
-
-@Preview
-@Composable
-fun MisiPreview(){
-    misi()
-}
