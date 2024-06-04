@@ -29,13 +29,11 @@ enum class Screens {
     konsul_method,
     booking_detail,
     konsul_chat,
-    teman_sehat_chat
+    teman_sehat_chat,
+    artikelKecanduan,
+    artikelEmosional,
+    detailKecanduan,
+    detailEmosional
 }
 
 
-sealed class Screen(val route : String) {
-    data object Splash : Screen("splash")
-    data object Welcome : Screen("onBoarding")
-    data object Login : Screen("login")
-    data object Daftar : Screen("daftar")
-}

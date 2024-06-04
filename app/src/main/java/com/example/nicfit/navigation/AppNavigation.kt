@@ -1,5 +1,6 @@
 package com.example.nicfit.navigation
 
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,11 +19,12 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.nicfit.artikel.artikel
+import androidx.navigation.navArgument
 import com.example.nicfit.beranda.ContactUs
 import com.example.nicfit.beranda.akunsaya
 import com.example.nicfit.beranda.bantuan
@@ -32,9 +34,17 @@ import com.example.nicfit.beranda.kebijakanPrivasi
 import com.example.nicfit.beranda.pengaturan
 import com.example.nicfit.beranda.profile
 import com.example.nicfit.daftar.RegisScreen
-
-
 import com.example.nicfit.daftar.survei
+import com.example.nicfit.data.dataEmosional.imageRes
+import com.example.nicfit.data.dataEmosional.isi
+import com.example.nicfit.data.dataEmosional.judul
+import com.example.nicfit.data.dataEmosional.pencipta
+import com.example.nicfit.data.dataEmosional.tanggal
+import com.example.nicfit.data.dataKecanduan.dates
+import com.example.nicfit.data.dataKecanduan.deskripsi
+import com.example.nicfit.data.dataKecanduan.imageId
+import com.example.nicfit.data.dataKecanduan.names
+import com.example.nicfit.data.dataKecanduan.penerbit
 import com.example.nicfit.konsultasi.BookingDetail
 import com.example.nicfit.konsultasi.KonsulChat
 
@@ -54,6 +64,11 @@ import com.example.nicfit.konsultasi.PaymentStatus
 import com.example.nicfit.konsultasi.TransferBankBca
 import com.example.nicfit.teman_sehat.TemanSehatChat
 import com.example.nicfit_22_bios.views.screens.temanChatPages.TemanSehatList
+import artikel
+import com.example.nicfit.artikel.artikelEmosional
+import com.example.nicfit.artikel.artikelKecanduan
+import com.example.nicfit.artikel.detailEmosional
+import com.example.nicfit.artikel.detailKecanduan
 
 @Composable
 fun AppNavigation(
@@ -82,7 +97,10 @@ fun AppNavigation(
                 currentDestination?.route != Screens.detail.name&&
                 currentDestination?.route != Screens.payment_bank.name&&
                 currentDestination?.route != Screens.payment_status.name&&
-                currentDestination?.route != Screens.payment_bca.name
+                currentDestination?.route != Screens.payment_bca.name &&
+                currentDestination?.route != Screens.artikelKecanduan.name &&
+                currentDestination?.route != Screens.artikelEmosional.name &&
+                currentDestination?.route != Screens.artikel.name
             ){
 
             NavigationBar(
@@ -170,7 +188,7 @@ fun AppNavigation(
                 misi()
             }
             composable(route = Screens.artikel.name) {
-                artikel()
+                artikel(modifier = Modifier, navController = navController)
             }
             composable(route = Screens.temanSehat.name) {
                 TemanSehatList(modifier = Modifier,navController)
@@ -224,6 +242,42 @@ fun AppNavigation(
                 val isPaidStr = backStackEntry.arguments?.getString("isPaid")
                 val isPaid = isPaidStr?.toBoolean()
                 TemanSehatChat(modifier = Modifier, navController = navController, title = title!!, isPaid = isPaid!!, imageInt = imageInt!!, membersCount = membersCount!!, description = description!!)
+            }
+            composable(route = Screens.artikelKecanduan.name) {
+                artikelKecanduan(imageId, names, dates, penerbit, navController )
+            }
+            composable(route = Screens.artikelKecanduan.name) {
+                artikelEmosional(imageRes, judul, tanggal, pencipta, navController )
+            }
+            composable(route = "detailKecanduan/{index}",
+                arguments = listOf(
+                    navArgument(name = "index") {
+                        type = NavType.IntType
+                    }
+                )
+            ) { index->
+                detailKecanduan(
+                    photos = imageId,
+                    names = names,
+                    deskripsi = deskripsi,
+                    penerbit = penerbit,
+                    itemIndex = index.arguments?.getInt("Index")
+                )
+            }
+            composable(route = "detailEmosional/{index}",
+                arguments = listOf(
+                    navArgument(name = "index") {
+                        type = NavType.IntType
+                    }
+                )
+            ) { index->
+                detailEmosional(
+                    photos = imageRes,
+                    judul = judul,
+                    isi = isi,
+                    pencipta = pencipta,
+                    itemIndex = index.arguments?.getInt("Index")
+                )
             }
         }
     }
