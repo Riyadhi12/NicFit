@@ -25,7 +25,6 @@ fun TransferBankBca(
     navHostController: NavHostController,
     valueStr: String
 ){
-    val value = valueStr.toBoolean()
     Column(modifier = modifier.padding(vertical = 8.dp, horizontal = 16.dp)) {
         BankTransferCard(modifier = modifier.clickable {
             navHostController.navigate("payment_status/$valueStr")

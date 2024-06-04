@@ -27,8 +27,6 @@ import com.example.nicfit.components.CustomizedSearchBar
 import com.example.nicfit.components.TemanSehatTabPage
 import com.example.nicfit.componentsTS.poppinFamily
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TemanSehatList(
     modifier: Modifier,

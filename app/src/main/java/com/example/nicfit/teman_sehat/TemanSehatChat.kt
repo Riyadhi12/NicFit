@@ -1,5 +1,6 @@
 package com.example.nicfit.teman_sehat
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,14 +21,21 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.nicfit.R
 import com.example.nicfit.components.MessageList
+import com.example.nicfit.components.ProModalSheet
 import com.example.nicfit.componentsTS.TemanSehatModalSheet
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TemanSehatChat(
     modifier: Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    isPaid:Boolean,
+    imageInt:Int,
+    title:String,
+    membersCount:String,
+    description:String
 ){
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
@@ -43,19 +51,36 @@ fun TemanSehatChat(
                 containerColor = Color.White,
                 onDismissRequest = {
                     showBottomSheet.value = false
+                    if (!isPaid) {
+                        navController.navigateUp()
+                    }
                 },
                 sheetState = sheetState) {
-                TemanSehatModalSheet(
-                    modifier = modifier,
-                    imageInt = R.drawable.pasukan_berhenti_merokok,
-                    title = "Pasukan Berhenti Merokok",
-                    membersCount = "4,412",
-                    description = "Berbincang santuy tips and trik untuk berhenti merokok",
-                    onDismiss = {
-                        showBottomSheet.value = false
-                    },
-                    navHostController = navController
-                )
+                when (isPaid) {
+                    true ->
+                        TemanSehatModalSheet(
+                            modifier = modifier,
+                            imageInt = imageInt,
+                            title = title,
+                            membersCount = membersCount,
+                            description = description,
+                            onDismiss = {
+                                showBottomSheet.value = false
+                            },
+                            navHostController = navController
+                        )
+                    false -> ProModalSheet(
+                        modifier = modifier,
+                        navHostController = navController,
+                        onClickButton = {
+                            scope.launch { sheetState.hide() }.invokeOnCompletion {
+                                if (!sheetState.isVisible) {
+                                    showBottomSheet.value = false
+                                }
+                            }
+                            navController.navigate("payment_bank/false")
+                        })
+                }
             }
         }
     }

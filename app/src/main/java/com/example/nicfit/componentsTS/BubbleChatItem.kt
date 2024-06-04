@@ -35,6 +35,7 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
@@ -47,6 +48,38 @@ import com.example.nicfit.R
 import com.example.nicfit.componentsTS.poppinFamily
 //import com.example.nicfit.model.Message
 import com.example.nicfit_22_bios.model.Message
+
+@Composable
+fun MessageItemTemanSehat(message: Message, modifier: Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = when (message.status) {
+            true -> Arrangement.Start
+            false -> Arrangement.End
+        }
+    ){
+        Card(
+            colors = CardDefaults.cardColors(colorResource(id = R.color.chat_bubble_color).copy(alpha = 0.2f)),
+            modifier = modifier.width(256.dp).padding(end = 8.dp)
+        ){
+            Column(
+                modifier = modifier
+                    .width(190.dp)
+                    .padding(8.dp)
+            ) {
+                Text(text = message.text, fontFamily = poppinFamily, fontWeight = FontWeight.Normal)
+                Text(
+                    text = "08.30 AM",
+                    fontSize = 10.sp, fontFamily = poppinFamily, fontWeight = FontWeight.Normal
+                )
+            }
+        }
+        Image(painter = painterResource(id = R.drawable.icon_profile_chat), contentDescription = "")
+    }
+}
+
 
 
 @Composable
@@ -78,6 +111,7 @@ fun MessageItem(message: Message, modifier: Modifier) {
         }
     }
 }
+
 
 @Composable
 fun MessageList(
@@ -117,7 +151,7 @@ fun MessageList(
 
                 false -> {
                     items(messagesTemanSehat) { message ->
-                        MessageItem(message = message, modifier = modifier)
+                        MessageItemTemanSehat(message = message, modifier = modifier)
                     }
                 }
             }
@@ -171,3 +205,8 @@ fun MessageList(
     }
 }
 
+@Preview
+@Composable
+fun MessageListPreview() {
+    MessageList(modifier = Modifier, navHostController = NavHostController(LocalContext.current), isKonsultasi = false)
+}

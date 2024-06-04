@@ -29,6 +29,7 @@ fun TemanSehatTabView(
         TemanSehatItem(title = "Cintai Hidupmu", number = "70", false, R.drawable.cintai_hidupmu),
         TemanSehatItem(title = "Katakan Tidak Pada Rokok", number = "20", false, R.drawable.katakan_tidak)
     )
+
     val temanSayaLists = listOf(
         TemanSehatItem(title = "Pasukan Berhenti Merokok", number = "100", true, R.drawable.pasukan_berhenti_merokok)
     )

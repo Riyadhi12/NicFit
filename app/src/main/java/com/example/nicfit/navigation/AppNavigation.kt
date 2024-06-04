@@ -215,8 +215,15 @@ fun AppNavigation(
             composable(route = Screens.konfirmasiSandi.name) {
                 konfirmasiSandi(navController)
             }
-            composable(route = Screens.teman_sehat_chat.name){
-                TemanSehatChat(modifier = Modifier, navController = navController)
+            composable(route = "${Screens.teman_sehat_chat.name}/{imageInt}/{title}/{membersCount}/{description}/{isPaid}"){backStackEntry ->
+                val imageIntStr = backStackEntry.arguments?.getString("imageInt")
+                val imageInt = imageIntStr?.toInt()
+                val title = backStackEntry.arguments?.getString("title")
+                val membersCount = backStackEntry.arguments?.getString("membersCount")
+                val description = backStackEntry.arguments?.getString("description")
+                val isPaidStr = backStackEntry.arguments?.getString("isPaid")
+                val isPaid = isPaidStr?.toBoolean()
+                TemanSehatChat(modifier = Modifier, navController = navController, title = title!!, isPaid = isPaid!!, imageInt = imageInt!!, membersCount = membersCount!!, description = description!!)
             }
         }
     }

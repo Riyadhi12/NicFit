@@ -1,5 +1,6 @@
 package com.example.nicfit.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,66 +28,90 @@ import com.example.nicfit.componentsTS.poppinFamily
 import com.example.nicfit.navigation.Screens
 
 @Composable
-fun  TemanSehatItemList(
+fun TemanSehatItemList(
     modifier: Modifier,
     title: String,
     number: String,
-    joinedStatus:Boolean,
-    image:Int,
+    joinedStatus: Boolean,
+    image: Int,
     navController: NavHostController
-){
-            Card (
-                modifier = modifier.fillMaxWidth(),
-                backgroundColor = Color.White,
-                elevation = 5.dp
+) {
+    val description = "Berbincang santuy tips and trik untuk berhenti merokok"
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        backgroundColor = Color.White,
+        elevation = 5.dp
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = modifier.padding(horizontal = 16.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row (
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = modifier.padding(horizontal = 16.dp)
-                ){
+                Image(
+                    painter = painterResource(id = image), contentDescription = "",
+                    modifier = Modifier
+                        .size(60.dp)
+                        .padding(end = 8.dp)
+                )
+                Column {
+                    Text(
+                        text = title,
+                        fontSize = 11.sp,
+                        fontFamily = poppinFamily,
+                        fontWeight = FontWeight.Bold
+                    )
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
-                            painter = painterResource(id = image), contentDescription = "",
+                            painter = painterResource(id = R.drawable.ic_people),
+                            contentDescription = "",
                             modifier = Modifier
-                                .size(60.dp)
-                                .padding(end = 8.dp)
+                                .size(18.dp)
+                                .padding(end = 4.dp)
                         )
-                        Column {
-                            Text(text = title, fontSize = 11.sp, fontFamily = poppinFamily, fontWeight = FontWeight.Bold)
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.ic_people),
-                                    contentDescription = "",
-                                    modifier = Modifier.size(18.dp).
-                                    padding(end = 4.dp)
-                                )
-                                Text(text = "$number orang tergabung",fontSize = 12.sp, fontFamily = poppinFamily, color = Color.Gray)
-                            }
-                        }
+                        Text(
+                            text = "$number orang tergabung",
+                            fontSize = 12.sp,
+                            fontFamily = poppinFamily,
+                            color = Color.Gray
+                        )
                     }
-                    ConfirmationButton(
-                        text = when (joinedStatus) {
-                            true -> "Chat"
-                            false -> "Gabung"
-                        }, toConfirm = true,
-                        onClickButton = {
-                            navController.navigate(Screens.teman_sehat_chat.name)
-                        },
-                        modifier = Modifier.width(112.dp).size(DpSize.Unspecified)
-                    )
                 }
             }
-
+            ConfirmationButton(
+                text = when (joinedStatus) {
+                    true -> "Chat"
+                    false -> "Gabung"
+                }, toConfirm = true,
+                onClickButton = {
+                    val isPaid = title=="Pasukan Berhenti Merokok"
+                    Log.d("isPaid", isPaid.toString())
+                    Log.d("title", title)
+                    navController.navigate("${Screens.teman_sehat_chat.name}/${image}/$title/$number/$description/$isPaid")
+                },
+                modifier = Modifier
+                    .width(112.dp)
+                    .size(DpSize.Unspecified)
+            )
+        }
     }
+
+}
 
 
 @Preview
 @Composable
-fun TemanSehatItemPreview(){
-TemanSehatItemList(modifier = Modifier, title = "Pasukan rokok", number = "1000", joinedStatus = false, R.drawable.cintai_hidupmu,navController = NavHostController(LocalContext.current))
+fun TemanSehatItemPreview() {
+    TemanSehatItemList(
+        modifier = Modifier,
+        title = "Pasukan rokok",
+        number = "1000",
+        joinedStatus = false,
+        R.drawable.cintai_hidupmu,
+        navController = NavHostController(LocalContext.current)
+    )
 }

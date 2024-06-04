@@ -32,7 +32,7 @@ fun TemanSehatModalSheet(
     title: String,
     membersCount : String,
     description : String,
-    onDismiss : ()->Unit,
+    onDismiss : () -> Unit,
     navHostController: NavHostController
 ) {
     Column(
