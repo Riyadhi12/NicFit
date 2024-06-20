@@ -33,7 +33,9 @@ enum class Screens {
     artikelKecanduan,
     artikelEmosional,
     detailKecanduan,
-    detailEmosional
+    detailEmosional,
+    notifikasi,
+    NotificationItem
 }
 
 

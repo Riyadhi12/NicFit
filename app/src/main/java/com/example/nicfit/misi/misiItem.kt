@@ -35,6 +35,7 @@ fun DaftarMisi(misis: List<Misi>) {
 fun MisiItem(misi: Misi) {
         Row(
             modifier = Modifier
+                .clickable {  }
                 .height(120.dp)
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
