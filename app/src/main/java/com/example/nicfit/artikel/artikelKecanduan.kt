@@ -41,32 +41,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.nicfit.R
+import com.example.nicfit.data.dataKecanduan.kecanduan
+import com.example.nicfit.navigation.Screens
+import androidx.compose.foundation.lazy.items
+import com.example.nicfit.data.Kecanduan
+import com.example.nicfit.data.dataKecanduan
 
 @Composable
 fun artikelKecanduan(
-    imageId: Array<Int>,
-    names: Array<String>,
-    dates: Array<String>,
-    penerbit: Array<String>,
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(60.dp)
-    ) {
-        Text(
-            text = "Kecanduan",
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally),
-            color = Color.Black,
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-        )
-    }
+    val kecanduans = remember { dataKecanduan.kecanduanList}
 
     //Search Bar
     var textState by remember {
@@ -74,75 +60,98 @@ fun artikelKecanduan(
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 120.dp) // Adjust padding to position the Column
+        modifier = Modifier.fillMaxSize()
+            .padding(top = 38.dp),
+        //verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(38.dp))
         Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 20.dp, horizontal = 24.dp)
-                .shadow(3.dp, shape = RoundedCornerShape(15.dp))
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(13.dp)
-                )
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(start = 25.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.search),
-                contentDescription = "Search Bar",
-                tint = Color.Black,
-                modifier = Modifier.size(24.dp)
+            Image(
+                painter = painterResource(id = R.drawable.back3),
+                contentDescription = null,
+                modifier = Modifier.size(20.dp)
+                    .clickable { navController.navigate(Screens.artikel.name) }
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            BasicTextField(
-                value = textState,
-                onValueChange = { textState = it },
+            Spacer(modifier = Modifier.width(103.dp))
+            Text(
+                text = "Kecanduan",
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = TextStyle(
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                )
+            )
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 30.dp) // Adjust padding to position the Column
+        ) {
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(vertical = 20.dp, horizontal = 24.dp)
+                    .shadow(3.dp, shape = RoundedCornerShape(15.dp))
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(13.dp)
+                    )
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                if (textState.text.isEmpty()) {
-                    Text(
-                        text = "Cari Artikel",
-                        color = Color.Gray
+                Icon(
+                    painter = painterResource(id = R.drawable.search),
+                    contentDescription = "Search Bar",
+                    tint = Color.Black,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                BasicTextField(
+                    value = textState,
+                    onValueChange = { textState = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    if (textState.text.isEmpty()) {
+                        Text(
+                            text = "Cari Artikel",
+                            color = Color.Gray
+                        )
+                    }
+                }
+            }
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            LazyColumn(contentPadding = PaddingValues(16.dp)) {
+                items(
+                    items = kecanduans,
+                    key = { it.id }
+                ) { kecanduan ->
+                    ColumnItem(
+                        modifier = Modifier,
+                        kecanduan = kecanduan,
+                        navController = navController
                     )
                 }
             }
         }
     }
-    Spacer(modifier = Modifier.height(10.dp))
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        LazyColumn(contentPadding = PaddingValues(16.dp)) {
-            val itemCount = imageId.size
-
-            items(itemCount) {
-                ColumnItem(
-                    modifier,
-                    painter = imageId,
-                    title = names,
-                    dates = dates,
-                    penerbit = penerbit,
-                    itemIndex = it,
-                    navController = navController
-                )
-            }
-        }
-    }
 }
-
 @Composable
 fun ColumnItem(
     modifier: Modifier,
-    painter: Array<Int>,
-    title: Array<String>,
-    penerbit: Array<String>,
-    dates: Array<String>,
-    itemIndex: Int,
+    kecanduan: Kecanduan,
     navController: NavController
 ) {
     Card(
@@ -150,7 +159,7 @@ fun ColumnItem(
             .padding(10.dp)
             .wrapContentSize()
             .clickable {
-                navController.navigate(route = "detailKecanduan/$itemIndex")
+                navController.navigate(route = "detailKecanduan/${kecanduan.id}")
             },
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -163,23 +172,20 @@ fun ColumnItem(
             horizontalArrangement = Arrangement.spacedBy(15.dp)
         ) {
             Image(
-                painter = painterResource(id = painter[itemIndex]),
-                contentDescription = title[itemIndex],
+                painter = painterResource(id = kecanduan.imageId),
+                contentDescription = null,
                 modifier
                     .size(145.dp)
             )
             Column(modifier.padding(12.dp)) {
-                Text(text = title[itemIndex], fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
-                Text(text = penerbit[itemIndex], fontSize = 12.sp, fontWeight = FontWeight.Normal, style = TextStyle(color = Color.Blue))
-                Text(text = dates[itemIndex], fontSize = 12.sp, fontWeight = FontWeight.Normal)
+                Text(text = kecanduan.names, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                Text(text = kecanduan.penerbit, fontSize = 12.sp, fontWeight = FontWeight.Normal, style = TextStyle(color = Color.Blue))
+                Text(text = kecanduan.dates, fontSize = 12.sp, fontWeight = FontWeight.Normal)
 
             }
         }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun KecanduanPrev(){
 
-}
+

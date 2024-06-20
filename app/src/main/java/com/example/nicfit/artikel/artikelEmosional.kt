@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Card
@@ -39,91 +40,103 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.nicfit.R
+import com.example.nicfit.data.dataEmosional.emosional
+import com.example.nicfit.navigation.Screens
+import androidx.compose.foundation.lazy.items
+import com.example.nicfit.data.Emosional
+import com.example.nicfit.data.dataEmosional
+import com.example.nicfit.data.dataKecanduan
 
 @Composable
 fun artikelEmosional(
-    imageRes: Array<Int>,
-    judul: Array<String>,
-    tanggal: Array<String>,
-    pencipta: Array<String>,
     navController: NavController,
     modifier: Modifier = Modifier
-){
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(60.dp)
-    ){
-        Text(
-            text = "Kecanduan",
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally),
-            color = Color.Black,
-            style = TextStyle(
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-        )
-    }
+) {
+    val emosionals = remember { dataEmosional.emosionalList}
 
-    //Search Bar
     var textState by remember {
         mutableStateOf(TextFieldValue(""))
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 120.dp) // Adjust padding to position the Column
+        modifier = Modifier.fillMaxSize()
+            .padding(top = 38.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(38.dp))
         Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 20.dp, horizontal = 24.dp)
-                .shadow(3.dp, shape = RoundedCornerShape(15.dp))
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(13.dp)
-                )
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(start = 25.dp)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.search),
-                contentDescription = "Search Bar",
-                tint = Color.Black,
-                modifier = Modifier.size(24.dp)
+            Image(
+                painter = painterResource(id = R.drawable.back3),
+                contentDescription = null,
+                modifier = Modifier.size(20.dp)
+                    .clickable { navController.navigate(Screens.artikel.name) }
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            BasicTextField(
-                value = textState,
-                onValueChange = { textState = it },
+            Spacer(modifier = Modifier.width(103.dp))
+            Text(
+                text = "Emosional",
+                modifier = Modifier.align(Alignment.CenterVertically),
+                style = TextStyle(
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                )
+            )
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 30.dp) // Adjust padding to position the Column
+        ) {
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-            ) {
-                if (textState.text.isEmpty()) {
-                    Text(
-                        text = "Cari Artikel",
-                        color = Color.Gray
+                    .padding(vertical = 20.dp, horizontal = 24.dp)
+                    .shadow(3.dp, shape = RoundedCornerShape(15.dp))
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(13.dp)
                     )
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.search),
+                    contentDescription = "Search Bar",
+                    tint = Color.Black,
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                BasicTextField(
+                    value = textState,
+                    onValueChange = { textState = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    if (textState.text.isEmpty()) {
+                        Text(
+                            text = "Cari Artikel",
+                            color = Color.Gray
+                        )
+                    }
                 }
             }
         }
-    }
-    Spacer(modifier = Modifier.height(19.dp))
-    LazyColumn(contentPadding = PaddingValues(16.dp)) {
-        val itemCount = imageRes.size
-
-        items(itemCount) {
-            ItemEmosional(
-                modifier,
-                painter = imageRes,
-                judul = judul,
-                tanggal = tanggal,
-                pencipta = pencipta,
-                itemIndex = it,
-                navController = navController
-            )
+        LazyColumn(contentPadding = PaddingValues(16.dp)) {
+            items(
+                items = emosionals,
+                key = { it.id }
+            ) { emosional ->
+                ItemEmosional(
+                    modifier = Modifier,
+                    emosional = emosional,
+                    navController = navController
+                )
+            }
         }
     }
 }
@@ -131,11 +144,7 @@ fun artikelEmosional(
 @Composable
 fun ItemEmosional(
     modifier: Modifier,
-    painter: Array<Int>,
-    judul: Array<String>,
-    tanggal: Array<String>,
-    pencipta: Array<String>,
-    itemIndex: Int,
+    emosional: Emosional,
     navController: NavController
 ) {
     Card(
@@ -143,7 +152,7 @@ fun ItemEmosional(
             .padding(10.dp)
             .wrapContentSize()
             .clickable {
-                navController.navigate(route = "detailEmosional/$itemIndex")
+                navController.navigate(route = "detailEmosional/${emosional.id}")
             },
         colors = CardDefaults.cardColors(
             containerColor = Color.White
@@ -156,15 +165,15 @@ fun ItemEmosional(
             horizontalArrangement = Arrangement.spacedBy(15.dp)
         ) {
             Image(
-                    painter = painterResource(id = painter[itemIndex]),
-            contentDescription = judul[itemIndex],
-            modifier
-                .size(140.dp)
+                painter = painterResource(id = emosional.imageId),
+                contentDescription = null,
+                modifier
+                    .size(145.dp)
             )
             Column(modifier.padding(12.dp)) {
-                Text(text = judul[itemIndex], fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
-                Text(text = pencipta[itemIndex], fontSize = 12.sp, fontWeight = FontWeight.Normal, style = TextStyle(color = Color.Blue))
-                Text(text = tanggal[itemIndex], fontSize = 12.sp, fontWeight = FontWeight.Normal)
+                Text(text = emosional.names, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                Text(text = emosional.penerbit, fontSize = 12.sp, fontWeight = FontWeight.Normal, style = TextStyle(color = Color.Blue))
+                Text(text = emosional.dates, fontSize = 12.sp, fontWeight = FontWeight.Normal)
 
             }
         }

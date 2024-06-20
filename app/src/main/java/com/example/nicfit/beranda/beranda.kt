@@ -5,8 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.SmokingRooms
@@ -35,16 +37,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.navArgument
 import com.example.nicfit.R
+import com.example.nicfit.componentsTS.poppinFamily
 import com.example.nicfit.misi.misi
 import com.example.nicfit.navigation.Screens
 import com.example.nicfit.ui.theme.Blue
+import com.example.nicfit_22_bios.views.tabview.TemanSehatTabView
 
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun beranda(navController: NavController) {
+fun beranda(
+   modifier: Modifier,
+   //navController: NavController,
+   navController: NavHostController,
+   keyword:String
+) {
    Box(
       modifier = Modifier
          .fillMaxSize()
@@ -71,7 +81,6 @@ fun beranda(navController: NavController) {
                   contentDescription = null,
                   contentScale = ContentScale.Crop,
                   modifier = Modifier.size(56.dp)
-
                )
             }
             Column(
@@ -89,16 +98,20 @@ fun beranda(navController: NavController) {
             }
             Image(
                painterResource(id = R.drawable.inotif)
-               , contentDescription = "",
+               ,contentDescription = "",
                modifier = Modifier
                   .padding(start = 178.dp)
                   .size(24.dp)
+                  .clickable {
+                     navController.navigate(Screens.notifikasi.name)
+                  }
             )
 
          }
          Text(text = "Semangat,Kamu telah berhenti merokok selama 10 hari atau 120 batang",
             modifier = Modifier.padding(top = 30.dp, start = 55.dp, end = 55.dp),
             fontWeight = FontWeight.SemiBold,
+            fontFamily = poppinFamily,
             fontSize = 12.sp,
             color = Color.White
          )
@@ -190,28 +203,30 @@ fun beranda(navController: NavController) {
             )
          }
       }
-      Box(
-         modifier = Modifier
-            .fillMaxWidth()
-            .height(134.dp)
-            .padding(vertical = 10.dp, horizontal = 24.dp)
-            .background(
-               color = Blue.copy(alpha = 0.2f),
-               shape = RoundedCornerShape(16.dp)
-            )
+      Column(
       ) {
-        Row {
-           Image(painter = painterResource(id = R.drawable.budoc),
-              contentDescription = "",
-              modifier = Modifier.padding(start = 22.dp)
-           )
-           Text (text = "Terhubung Dengan Konsultan Dan Dapatkan saran",
-              modifier = Modifier.padding(start = 25.dp, top = 12.dp),
-              fontWeight = FontWeight.SemiBold,
-              color = Color.Black,
-              fontSize = 14.sp
-           )
-        }
+         Box(
+            modifier = Modifier
+               .fillMaxWidth()
+               .height(134.dp)
+               .padding(vertical = 10.dp, horizontal = 24.dp)
+               .background(
+                  color = Blue.copy(alpha = 0.2f),
+                  shape = RoundedCornerShape(16.dp)
+               )
+         ) {
+            Row {
+               Image(painter = painterResource(id = R.drawable.budoc),
+                  contentDescription = "",
+                  modifier = Modifier.padding(start = 22.dp)
+               )
+               Text (text = "Terhubung Dengan Konsultan Dan Dapatkan saran",
+                  modifier = Modifier.padding(start = 25.dp, top = 12.dp),
+                  fontWeight = FontWeight.SemiBold,
+                  color = Color.Black,
+                  fontSize = 14.sp
+               )
+            }
             Button(
                onClick = { }, modifier = Modifier
                   .padding(top = 70.dp, start = 126.dp)
@@ -221,9 +236,35 @@ fun beranda(navController: NavController) {
                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF508CAE)))
             {
                Text(text = "Lihat Detail",
-                       fontSize = 10.sp)
+                  fontSize = 10.sp)
             }
+         }
+
+         Row(
+            modifier = Modifier
+               .padding(top = 10.dp, start = 16.dp, bottom = 2.dp)
+               .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+         ) {
+            Text(
+               text = "Teman Sehat", fontSize = 16.sp, fontWeight = FontWeight.SemiBold,
+               modifier = Modifier
+            )
+            Text(
+               text = "Lihat Semua",
+               fontSize = 10.sp,
+               fontWeight = FontWeight.Normal,
+               color = Color(0xFF508CAE),
+               modifier = Modifier
+                  .padding(end = 10.dp)
+                  .clickable { navController.navigate(Screens.temanSehat.name) }
+            )
+
+         }
+         TemanSehatTabView(modifier = modifier, isTemanSehat = true, navController = navController, keyword = keyword)
       }
+
    }
 }
 

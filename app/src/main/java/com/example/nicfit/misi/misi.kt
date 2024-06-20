@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.nicfit.R
 import com.example.nicfit.component.searchBar
+import com.example.nicfit.componentsTS.poppinFamily
 import com.example.nicfit.ui.theme.Blue
 
 @Composable
@@ -57,16 +58,18 @@ fun misi() {
                     color = Color.White,
                     style = TextStyle(
                         fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = poppinFamily
                     )
                 )
                 Text(
-                    text = "Rabu,22 Mei 2024",
+                    text = "Rabu,05 Juni 2024",
                     modifier = Modifier,
                     color = Color.White,
                     style = TextStyle(
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = poppinFamily
                     )
                 )
 
