@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "431315820586",
+    "project_id": "nicfit-aa66f",
+    "storage_bucket": "nicfit-aa66f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431315820586:android:fa338a25851e7997392353",
+        "android_client_info": {
+          "package_name": "com.example.nicfit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU2nHQ60bQBP6mWzvuP_EK08IsM6IAN58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

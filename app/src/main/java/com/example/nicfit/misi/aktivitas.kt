@@ -25,22 +25,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.nicfit.data.misiBerenang
-import com.example.nicfit.data.misiBerjalan
-import com.example.nicfit.data.misiJogging
-import com.example.nicfit.data.misiYoga
-import com.example.nicfit.data.semuaMisi
+import androidx.navigation.NavController
+import com.example.nicfit.data.MisiRepository
 import com.example.nicfit.ui.theme.Blue
 
 @Composable
-fun TabbedInterface() {
-    var tabTerpilih by remember {
-        mutableStateOf("Semua")
-    }
+fun TabbedInterface(
+    navController: NavController
+) {
+    var tabTerpilih by remember {mutableStateOf("Semua")}
     val tabs = listOf("Semua", "Berjalan", "Yoga", "Berenang", "Jogging")
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+        Row(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
             tabs.forEach { tab ->
                 ExerciseItem(
                     exercise = tab,
@@ -53,16 +53,14 @@ fun TabbedInterface() {
         Spacer(modifier = Modifier.height(16.dp))
 
         when (tabTerpilih) {
-            "Semua" -> DaftarMisi(misis = semuaMisi)
-            "Berjalan" -> DaftarMisi(misis = misiBerjalan)
-            "Yoga" -> DaftarMisi(misis = misiYoga)
-            "Berenang" -> DaftarMisi(misis = misiBerenang)
-            "Jogging" -> DaftarMisi(misis = misiJogging)
+            "Semua" -> DaftarMisi(misis = MisiRepository.semuaMisi,navController)
+            "Berjalan" -> DaftarMisi(misis = MisiRepository.misiBerjalan,navController)
+            "Yoga" -> DaftarMisi(misis = MisiRepository.misiYoga,navController)
+            "Berenang" -> DaftarMisi(misis = MisiRepository.misiBerenang,navController)
+            "Jogging" -> DaftarMisi(misis = MisiRepository.misiJogging,navController)
         }
     }
 }
-
-
 
 @Composable
 fun ExerciseItem(

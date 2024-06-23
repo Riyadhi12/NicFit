@@ -64,6 +64,8 @@ import com.example.nicfit.artikel.artikelKecanduan
 import com.example.nicfit.artikel.detailEmosional
 import com.example.nicfit.artikel.detailKecanduan
 import com.example.nicfit.beranda.notifikasi
+import com.example.nicfit.misi.detailMisi
+import com.example.nicfit.misi.progress
 
 @Composable
 fun AppNavigation(
@@ -174,7 +176,7 @@ fun AppNavigation(
                 KonsulChat(modifier = Modifier, navHostController = navController)
             }
             composable(route = Screens.misi.name) {
-                misi()
+                misi(navController)
             }
             composable(route = Screens.artikel.name) {
                 artikel(modifier = Modifier, navController = navController)
@@ -263,7 +265,20 @@ fun AppNavigation(
             composable(route = Screens.notifikasi.name) {
                 notifikasi(navController)
             }
-
+            composable(
+                route = Screens.detailMisi.name + "/{misiId}", arguments = listOf(
+                    navArgument("misiId") {
+                        type = NavType.IntType
+                    })
+            ) { navBackStackEntry ->
+                detailMisi(
+                    navController = navController,
+                    misiId = navBackStackEntry.arguments?.getInt("misiId")
+                )
+            }
+            composable(route = Screens.progress.name) {
+                progress(navController)
+            }
         }
     }
 }
