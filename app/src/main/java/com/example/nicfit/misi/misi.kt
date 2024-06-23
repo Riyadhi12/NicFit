@@ -34,13 +34,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.nicfit.R
 import com.example.nicfit.component.searchBar
 import com.example.nicfit.componentsTS.poppinFamily
+import com.example.nicfit.navigation.Screens
 import com.example.nicfit.ui.theme.Blue
 
 @Composable
-fun misi() {
+fun misi(
+    navController: NavController
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -209,13 +213,14 @@ fun misi() {
                 )
                 Text (text = "Lihat Progress bulan ini\nyuk!!",
                     modifier = Modifier.padding(start = 20.dp, top = 18.dp),
-                    //fontWeight = FontWeight.SemiBold,
                     color = Color.Black,
                     fontSize = 14.sp
                 )
             }
             Button(
-                onClick = { }, modifier = Modifier
+                onClick = {
+                    navController.navigate(Screens.progress.name)
+                }, modifier = Modifier
                     .padding(top = 70.dp, start = 150.dp)
                     .width(100.dp)
                     .height(30.dp),
@@ -242,7 +247,7 @@ fun misi() {
         Column(
 
         ) {
-            TabbedInterface()
+            TabbedInterface(navController)
         }
 
     }

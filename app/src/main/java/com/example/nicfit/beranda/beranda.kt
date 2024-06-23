@@ -228,7 +228,9 @@ fun beranda(
                )
             }
             Button(
-               onClick = { }, modifier = Modifier
+               onClick = {
+                  navController.navigate(Screens.konsultasi.name)
+               }, modifier = Modifier
                   .padding(top = 70.dp, start = 126.dp)
                   .width(100.dp)
                   .height(30.dp),

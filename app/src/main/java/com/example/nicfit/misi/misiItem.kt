@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -17,25 +18,38 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.nicfit.data.Misi
+import com.example.nicfit.data.MisiRepository
+import com.example.nicfit.navigation.Screens
 
 @Composable
-fun DaftarMisi(misis: List<Misi>) {
+fun DaftarMisi(
+    misis: List<Misi>,
+    navController: NavController
+) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        items(misis) { misi ->
-            MisiItem(misi)
-            Spacer(modifier = Modifier.height(8.dp))
-        }
+        items(
+            items = misis,key = {it.id},
+            itemContent = {
+                MisiItem(misi = it){ misiId ->
+                    navController.navigate(Screens.detailMisi.name + "/${misiId}")
+                }
+            }
+        )
     }
 }
 
 @Composable
-fun MisiItem(misi: Misi) {
+fun MisiItem(
+    misi: Misi,
+    modifier : Modifier = Modifier,
+    onClick: (Int) -> Unit
+) {
         Row(
             modifier = Modifier
-                .clickable {  }
                 .height(120.dp)
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, bottom = 10.dp)
@@ -44,6 +58,7 @@ fun MisiItem(misi: Misi) {
                     shape = RoundedCornerShape(8.dp)
                 )
                 .padding(16.dp)
+                .clickable { onClick(misi.id) }
         ) {
             // Column for text content
             Column(
