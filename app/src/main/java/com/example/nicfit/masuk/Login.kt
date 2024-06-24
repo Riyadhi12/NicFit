@@ -111,7 +111,7 @@ fun login(navController: NavController, viewModel: FirebaseViewModel = hiltViewM
             shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp, bottomStart = 8.dp, bottomEnd = 8.dp),
             value = email, onValueChange = {email = it
             }, label = {
-                Text(text = "Masukkan Username Anda",
+                Text(text = "Masukkan Email Anda",
                     modifier = Modifier,
                     fontSize = 13.sp)
             },
